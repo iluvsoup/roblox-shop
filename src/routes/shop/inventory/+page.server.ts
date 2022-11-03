@@ -6,7 +6,6 @@ import { prisma } from "$lib/server/prisma";
 import { stripe } from "$lib/server/stripe";
 import { verify } from "jsonwebtoken";
 
-import { JWT_SECRET } from "$env/static/private";
 import { TOKEN_DURATION } from "$lib/constants";
 
 import type { PageServerLoad } from "./$types";
@@ -18,7 +17,7 @@ interface Token {
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const session = cookies.get("session");
-	const decoded = verify(session!, JWT_SECRET, { maxAge: TOKEN_DURATION }) as Token;
+	const decoded = verify(session!, process.env.JWT_SECRET!, { maxAge: TOKEN_DURATION }) as Token;
 
 	const uid = decoded.uid;
 	const products = await prisma.product.findMany({ where: { ownerUid: uid } });
