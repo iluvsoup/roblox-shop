@@ -1,7 +1,7 @@
 import { invalid, error, redirect } from "@sveltejs/kit";
 import { redis } from "$lib/server/redis";
 import { prisma } from "$lib/server/prisma";
-import { sign, verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 import { JWT_SECRET } from "$env/static/private";
 import { TOKEN_DURATION } from "$lib/constants";
@@ -15,7 +15,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 	if (session) {
 		try {
-			verify(session, JWT_SECRET, { maxAge: TOKEN_DURATION });
+			jwt.verify(session, JWT_SECRET, { maxAge: TOKEN_DURATION });
 		} catch (err) {
 			cookies.delete("session");
 			return;
@@ -52,7 +52,7 @@ export const actions: Actions = {
 		}
 
 		// the way they handle callbacks makes it hard for error handling and showing a loading spinner for example
-		const token = sign({ uid: uid }, JWT_SECRET, { expiresIn: TOKEN_DURATION });
+		const token = jwt.sign({ uid: uid }, JWT_SECRET, { expiresIn: TOKEN_DURATION });
 
 		if (!token) {
 			redis.disconnect();

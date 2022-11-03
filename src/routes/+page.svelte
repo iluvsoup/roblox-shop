@@ -2,7 +2,8 @@
 	// import Particles from "svelte-particles/src/Particles.svelte";
 	import { errorToast } from "$lib/toast";
 	// import { loadSlim } from "tsparticles-slim";
-	
+	import { toast } from "@zerodevx/svelte-toast"
+
 	import type { ActionData } from "./$types";
 	// import type { Engine, ISourceOptions } from "tsparticles-engine";
 

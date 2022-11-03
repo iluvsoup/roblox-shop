@@ -1,5 +1,5 @@
 import { redirect, error } from "@sveltejs/kit";
-import { verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 import { JWT_SECRET } from "$env/static/private";
 import { TOKEN_DURATION } from "$lib/constants";
@@ -19,7 +19,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		throw redirect(303, "/");
 	}
 
-	const decoded = verify(session, JWT_SECRET, { maxAge: TOKEN_DURATION }) as Token;
+	const decoded = jwt.verify(session, JWT_SECRET, { maxAge: TOKEN_DURATION }) as Token;
 	const uid = decoded.uid;
 
 	if (uid == "-1") {
