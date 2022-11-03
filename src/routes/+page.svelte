@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Particles from "svelte-particles/src/Particles.svelte";
 	import { errorToast } from "$lib/toast";
-	import { loadSlim } from "tsparticles-slim";
+	// import { loadSlim } from "tsparticles-slim";
 	
 	import type { ActionData } from "./$types";
 	import type { Engine, ISourceOptions } from "tsparticles-engine";
