@@ -26,6 +26,9 @@ export const POST: RequestHandler = async ({ request }) => {
 	const eventType = event.type;
 
 	switch (eventType) {
+		// DO NOT FORGET TO ADD EVENT TO STRIPE DASHBOARD IF YOU'RE ADDING A NEW EVENT HANDLER
+		// https://dashboard.stripe.com/webhooks
+
 		case "checkout.session.completed":
 			const data = event.data;
 			const object = data.object as Stripe.Checkout.Session;
