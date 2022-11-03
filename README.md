@@ -38,4 +38,4 @@ DATABASE_URL=
 
 If you want to test the Roblox authentication you must have an instance of Redis running on your machine
 
-A roblox project to interface with this would look something like [this](https://github.com/iluvsoup/roblox-shop/roblox/shop.rbxl)
+A roblox project to interface with this would look something like [this](https://github.com/iluvsoup/roblox-shop/blob/main/roblox/shop.rbxl)
