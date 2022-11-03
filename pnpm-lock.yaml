@@ -19,6 +19,7 @@ specifiers:
   lighthouse: ^9.6.7
   prettier: ^2.6.2
   prettier-plugin-svelte: ^2.7.0
+  prisma: ^4.5.0
   stripe: ^10.13.0
   svelte: ^3.44.0
   svelte-check: ^2.7.1
@@ -28,7 +29,7 @@ specifiers:
   vite: ^3.1.0
 
 devDependencies:
-  '@prisma/client': 4.5.0
+  '@prisma/client': 4.5.0_prisma@4.5.0
   '@stripe/stripe-js': 1.42.1
   '@sveltejs/adapter-auto': 1.0.0-next.86
   '@sveltejs/kit': 1.0.0-next.532_svelte@3.52.0+vite@3.2.2
@@ -46,6 +47,7 @@ devDependencies:
   lighthouse: 9.6.8
   prettier: 2.7.1
   prettier-plugin-svelte: 2.8.0_lrllcp5xtrkmmdzifit4hd52ze
+  prisma: 4.5.0
   stripe: 10.15.0
   svelte: 3.52.0
   svelte-check: 2.9.2_svelte@3.52.0
@@ -182,7 +184,7 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@prisma/client/4.5.0:
+  /@prisma/client/4.5.0_prisma@4.5.0:
     resolution: {integrity: sha512-B2cV0OPI1smhdYUxsJoLYQLoMlLH06MUxgFUWQnHodGMX98VRVXKmQE/9OcrTNkqtke5RC+YU24Szxd04tZA2g==}
     engines: {node: '>=14.17'}
     requiresBuild: true
@@ -193,10 +195,16 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452
+      prisma: 4.5.0
     dev: true
 
   /@prisma/engines-version/4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452:
     resolution: {integrity: sha512-o7LyVx8PPJBLrEzLl6lpxxk2D5VnlM4Fwmrbq0NoT6pr5aa1OuHD9ZG+WJY6TlR/iD9bhmo2LNcxddCMr5Rv2A==}
+    dev: true
+
+  /@prisma/engines/4.5.0:
+    resolution: {integrity: sha512-4t9ir2SbQQr/wMCNU4YpHWp5hU14J2m3wHUZnGJPpmBF8YtkisxyVyQsKd1e6FyLTaGq8LOLhm6VLYHKqKNm+g==}
+    requiresBuild: true
     dev: true
 
   /@sentry/core/6.19.7:
@@ -2236,6 +2244,15 @@ packages:
     resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+    dev: true
+
+  /prisma/4.5.0:
+    resolution: {integrity: sha512-9Aeg4qiKlv9Wsjz4NO8k2CzRzlvS3A4FYVJ5+28sBBZ0eEwbiVOE/Jj7v6rZC1tFW2s4GSICQOAyuOjc6WsNew==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 4.5.0
     dev: true
 
   /progress/2.0.3:
