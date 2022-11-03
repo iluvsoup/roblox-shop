@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Particles from "svelte-particles/src/Particles.svelte";
-	import { loadSlim } from "tsparticles-slim";
 	import { errorToast } from "$lib/toast";
-
+	import { loadSlim } from "tsparticles-slim";
+	
 	import type { ActionData } from "./$types";
 	import type { Engine, ISourceOptions } from "tsparticles-engine";
 
@@ -40,9 +40,10 @@
 		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
 		// starting from v2 you can add only the features you need reducing the bundle size
 
-		engine.loadFromArray("tsparticles", [particlesConfig]);
+		// unnecessary?
+		await engine.loadFromArray("tsparticles", [particlesConfig]);
 
-		await loadSlim(engine);
+		// await loadSlim(engine);
 	};
 
 	if (form?.missing) {
