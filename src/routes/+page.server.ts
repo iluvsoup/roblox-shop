@@ -74,7 +74,8 @@ export const actions: Actions = {
 					}
 				});
 			}
-		} catch {
+		} catch (err) {
+			console.log(err);
 			throw error(500, { message: "Failed to create user" });
 		}
 
