@@ -45,6 +45,9 @@
 	"dependencies": {
 		"@sveltejs/adapter-vercel": "1.0.0-next.81",
 		"@zerodevx/svelte-toast": "0.7.2",
-		"autoprefixer": "^10.4.13"
+		"autoprefixer": "^10.4.13",
+		"svelte-particles": "^2.5.1",
+		"tsparticles-engine": "^2.5.0",
+		"tsparticles-slim": "^2.5.1"
 	}
 }
