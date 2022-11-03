@@ -7,7 +7,9 @@ I've been working on this on my own for a while but I decided that I should prob
 # Tech stack
 
 Svelte & SvelteKit
+
 PostgreSQL & Prisma
+
 Redis
 
 # TODO
