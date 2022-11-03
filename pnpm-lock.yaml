@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@fortawesome/free-regular-svg-icons': ^6.2.0
   '@prisma/client': ^4.5.0
   '@stripe/stripe-js': ^1.41.0
   '@sveltejs/adapter-auto': next
@@ -22,20 +21,13 @@ specifiers:
   prettier-plugin-svelte: ^2.7.0
   stripe: ^10.13.0
   svelte: ^3.44.0
-  svelte-awesome: ^3.0.0
   svelte-check: ^2.7.1
-  svelte-particles: ^2.5.1
   svelte-preprocess: ^4.10.6
   tslib: ^2.3.1
-  tsparticles-engine: ^2.5.0
   typescript: ^4.7.4
   vite: ^3.1.0
 
-dependencies:
-  tsparticles-engine: 2.5.0
-
 devDependencies:
-  '@fortawesome/free-regular-svg-icons': 6.2.0
   '@prisma/client': 4.5.0
   '@stripe/stripe-js': 1.42.1
   '@sveltejs/adapter-auto': 1.0.0-next.86
@@ -56,9 +48,7 @@ devDependencies:
   prettier-plugin-svelte: 2.8.0_lrllcp5xtrkmmdzifit4hd52ze
   stripe: 10.15.0
   svelte: 3.52.0
-  svelte-awesome: 3.0.0_svelte@3.52.0
   svelte-check: 2.9.2_svelte@3.52.0
-  svelte-particles: 2.5.1_svelte@3.52.0
   svelte-preprocess: 4.10.7_besnmoibwkhwtentvwuriss7pa
   tslib: 2.4.1
   typescript: 4.8.4
@@ -103,20 +93,6 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@fortawesome/fontawesome-common-types/6.2.0:
-    resolution: {integrity: sha512-rBevIsj2nclStJ7AxTdfsa3ovHb1H+qApwrxcTVo+NNdeJiB9V75hsKfrkG5AwNcRUNxrPPiScGYCNmLMoh8pg==}
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dev: true
-
-  /@fortawesome/free-regular-svg-icons/6.2.0:
-    resolution: {integrity: sha512-M1dG+PAmkYMTL9BSUHFXY5oaHwBYfHCPhbJ8qj8JELsc9XCrUJ6eEHWip4q0tE+h9C0DVyFkwIM9t7QYyCpprQ==}
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 6.2.0
     dev: true
 
   /@humanwhocodes/config-array/0.11.7:
@@ -2603,14 +2579,6 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-awesome/3.0.0_svelte@3.52.0:
-    resolution: {integrity: sha512-jfK+vc7f2kTFbBCk3dR1C3JA72cugh5bZHILc0gHbaSC3f1PkwPpA4OwpCRCT1Zf0hv6oaSZKxR8V2m1SKHj3Q==}
-    peerDependencies:
-      svelte: ^3.43.1
-    dependencies:
-      svelte: 3.52.0
-    dev: true
-
   /svelte-check/2.9.2_svelte@3.52.0:
     resolution: {integrity: sha512-DRi8HhnCiqiGR2YF9ervPGvtoYrheE09cXieCTEqeTPOTJzfoa54Py8rovIBv4bH4n5HgZYIyTQ3DDLHQLl2uQ==}
     hasBin: true
@@ -2646,15 +2614,6 @@ packages:
       svelte: '>=3.19.0'
     dependencies:
       svelte: 3.52.0
-    dev: true
-
-  /svelte-particles/2.5.1_svelte@3.52.0:
-    resolution: {integrity: sha512-ua3D7MpU/Z/Mw4qWBrMEwZrH0LAX16Frel1w0HS0StY00Thnt+d9hvzdvk+IaQHjb6njq0l1N8BEtavhMXNKkQ==}
-    peerDependencies:
-      svelte: '>=3'
-    dependencies:
-      svelte: 3.52.0
-      tsparticles-engine: 2.5.0
     dev: true
 
   /svelte-preprocess/4.10.7_besnmoibwkhwtentvwuriss7pa:
@@ -2787,10 +2746,6 @@ packages:
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
     dev: true
-
-  /tsparticles-engine/2.5.0:
-    resolution: {integrity: sha512-eeV1bZmSoPQB8nbEmiOzAsFUSaFzlZoxxeLKgi5gHbhuLTSUEbQA12zStMm49Njg4aOzVo+fg9JyRVnWOLTqBQ==}
-    requiresBuild: true
 
   /tsutils/3.21.0_typescript@4.8.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}

@@ -1,50 +1,50 @@
 <script lang="ts">
-	import Particles from "svelte-particles/src/Particles.svelte";
+	// import Particles from "svelte-particles/src/Particles.svelte";
 	import { errorToast } from "$lib/toast";
 	// import { loadSlim } from "tsparticles-slim";
 	
 	import type { ActionData } from "./$types";
-	import type { Engine, ISourceOptions } from "tsparticles-engine";
+	// import type { Engine, ISourceOptions } from "tsparticles-engine";
 
 	export let form: ActionData;
 
-	let particlesConfig: ISourceOptions = {
-		fullScreen: {
-			enable: true,
-			zIndex: -1
-		},
-		particles: {
-			move: {
-				enable: true,
-				speed: { min: 0.4, max: 1 },
-				noise: {
-					enable: true
-				}
-			},
-			size: {
-				value: { min: 1, max: 1.5 }
-			},
-			opacity: {
-				animation: {
-					enable: true,
-					startValue: "max",
-					minimumValue: 0,
-					speed: { min: 0.4, max: 1 }
-				}
-			}
-		}
-	};
+	// let particlesConfig: ISourceOptions = {
+	// 	fullScreen: {
+	// 		enable: true,
+	// 		zIndex: -1
+	// 	},
+	// 	particles: {
+	// 		move: {
+	// 			enable: true,
+	// 			speed: { min: 0.4, max: 1 },
+	// 			noise: {
+	// 				enable: true
+	// 			}
+	// 		},
+	// 		size: {
+	// 			value: { min: 1, max: 1.5 }
+	// 		},
+	// 		opacity: {
+	// 			animation: {
+	// 				enable: true,
+	// 				startValue: "max",
+	// 				minimumValue: 0,
+	// 				speed: { min: 0.4, max: 1 }
+	// 			}
+	// 		}
+	// 	}
+	// };
 
-	let particlesInit = async (engine: Engine) => {
-		// you can use main to customize the tsParticles instance adding presets or custom shapes
-		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-		// starting from v2 you can add only the features you need reducing the bundle size
+	// let particlesInit = async (engine: Engine) => {
+	// 	// you can use main to customize the tsParticles instance adding presets or custom shapes
+	// 	// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+	// 	// starting from v2 you can add only the features you need reducing the bundle size
 
-		// unnecessary?
-		await engine.loadFromArray("tsparticles", [particlesConfig]);
+	// 	// unnecessary?
+	// 	await engine.loadFromArray("tsparticles", [particlesConfig]);
 
-		// await loadSlim(engine);
-	};
+	// 	// await loadSlim(engine);
+	// };
 
 	if (form?.missing) {
 		errorToast("You must enter a verification code!");
@@ -61,7 +61,7 @@
 </svelte:head>
 
 <template>
-	<Particles id="tsparticles" options={particlesConfig} {particlesInit} />
+	<!-- <Particles id="tsparticles" options={particlesConfig} {particlesInit} /> -->
 
 	<main>
 		<div class="content">
