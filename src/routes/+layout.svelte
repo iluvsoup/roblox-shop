@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { navigating } from "$app/stores";
 	import Spinner from "$lib/components/Spinner.svelte";
-	import SvelteToast from "@zerodevx/svelte-toast/src/SvelteToast.svelte";
+	import { SvelteToast } from "@zerodevx/svelte-toast";
 
 	import type { SvelteToastOptions } from "@zerodevx/svelte-toast";
 
@@ -16,8 +16,8 @@
 	{/if}
 
 	<SvelteToast {options} />
-
 	<slot />
+	<p class="footer">Made by <a href="https://github.com/iluvsoup">iluvsoup</a></p>
 </template>
 
 <style>
@@ -44,5 +44,20 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.footer {
+		position: fixed;
+		top: 100%;
+		left: 50%;
+		transform: translate(-50%, -150%);
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+
+	.footer a {
+		color: lightblue;
+		text-decoration: none;
 	}
 </style>
