@@ -64,7 +64,7 @@
 		<h1>Verify your Roblox account</h1>
 		<p class="subtitle">Input the verification code you recieved in-game</p>
 
-		<form method="POST">
+		<form method="POST" autocomplete="off">
 			<input name="uuid" type="text" aria-label="Verification code" />
 			<button>Verify!</button>
 		</form>
