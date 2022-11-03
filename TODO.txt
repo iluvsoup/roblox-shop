@@ -1,0 +1,56 @@
+[I think so] SECURITY (JWT)
+[hard] SHOW LOADING SPINNER WHEN CREATING TOKEN
+[ehhh I did some of it] JWT ERROR HANDLING
+
+[DONE] Change back cookie duration
+[DONE] CHANGE PRIVATE KEY
+[I HOPE IT'S SOLVED] DISCONNECT REDIS
+
+[DONE] validate cookie before redirect
+[DONE] if roblox request fails, don't let user in
+
+[DONE] Remove code when player leaves game
+[DONE] Check if uuid inputted is valid
+[DONE] Regenerate code when it is used (think of a way to communicate this to roblox too)
+[DONE] Create secure cookie
+[DONE] Redirect to /shop if form is successful
+[DONE] Redirect to /shop automatically if user has cookie
+[DONE] Redirect to / automatically if user has no cookie
+[DONE] Display username
+[DONE] Display roblox profile picture
+[DONE] Log out feature
+[DONE] Add regenerate code functionality
+
+
+
+[DONE] load products from stripe
+[DONE] display price
+[DONE] display products
+[DONE] add product page
+[DONE] checkout
+[DONE] handle webhooks
+[DONE] handle customer stuff
+[DONE] setup postgresql & prisma
+[DONE] save purchased item to db
+[DONE] add inventory route
+[DONE] link with roblox
+
+(dont need to if we don't allow people to redeem codes they don't own) regenerate redeem code
+deploy
+read up on pix stuff
+read up on tax stuff
+
+(after deployment)
+try to find a way to check if request was from roblox
+
+[NICE TO HAVE] load as little data on server, redirects should be fast, i dont mind some loading spinners
+
+[MAYBE] switch to jose, jsonwebtoken is a bit sus
+[FUTURE] item quantity
+[FUTURE] rate limiting
+
+make sure apis can't be fucked with
+don't allow users to update the code for items they don't own etc.
+
+make it look good
+fix loading gear and give it a border bla bla bla
