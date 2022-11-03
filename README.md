@@ -22,9 +22,7 @@ Deployment, setup docker etc.
 
 # Developing
 
-`npm run dev` to run it locally on port 5173
-
-`npm run build` to build
+`(p)npm run dev` to run it locally on port 5173
 
 **NOTE**: You will need to create a .env file with the following:
 
