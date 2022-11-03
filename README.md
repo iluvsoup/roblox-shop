@@ -1,38 +1,37 @@
-# create-svelte
+# Roblox Shop
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A web shop that connects to roblox
 
-## Creating a project
+I've been working on this on my own for a while but I decided that I should probably open source it
 
-If you're seeing this, you've probably already done this step. Congrats!
+# Tech stack
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+Svelte & SvelteKit
+PostgreSQL & Prisma
+Redis
 
-# create a new project in my-app
-npm create svelte@latest my-app
+# TODO
+
+CSS
+
+Maybe additional security
+
+Deployment, setup docker etc.
+
+# Developing
+
+`npm run dev` to run it locally on port 5173
+
+`npm run build` to build
+
+**NOTE**: You will need to create a .env file with the following:
+
+```
+SECRET_STRIPE_KEY=
+PUBLIC_STRIPE_KEY=
+JWT_SECRET=
+WEBHOOK_SECRET=
+DATABASE_URL=
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+If you want to test the Roblox authentication you must have an instance of Redis running on your machine
