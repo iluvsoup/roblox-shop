@@ -4,7 +4,7 @@ import { error } from "@sveltejs/kit";
 
 import type { PageServerLoad } from "./$types";
 
-export const prerender = true;
+export const prerender = "auto";
 
 export const load: PageServerLoad = async ({ params }) => {
 	const id = params.product;
