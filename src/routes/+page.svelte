@@ -73,7 +73,7 @@
 
 <style>
 	:global(body) {
-		background-color: var(--primary);
+		background-image: linear-gradient(var(--primary), var(--primary-dark));
 		color: #fff;
 		display: flex;
 		justify-content: center;
