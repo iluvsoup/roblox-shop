@@ -31,7 +31,8 @@
 					minimumValue: 0,
 					speed: { min: 0.4, max: 1 }
 				}
-			}
+			},
+			interactivity: {}
 		}
 	};
 
@@ -61,13 +62,15 @@
 	<Particles id="tsparticles" options={particlesConfig} {particlesInit} />
 
 	<main>
-		<h1>Verify your Roblox account</h1>
-		<p class="subtitle">Input the verification code you recieved in-game</p>
+		<div class="content">
+			<h1>Verify your Roblox account</h1>
+			<p class="subtitle">Input the verification code you recieved in-game</p>
 
-		<form method="POST" autocomplete="off">
-			<input name="uuid" type="text" aria-label="Verification code" />
-			<button>Verify!</button>
-		</form>
+			<form method="POST" autocomplete="off">
+				<input name="uuid" type="text" aria-label="Verification code" />
+				<button>Verify!</button>
+			</form>
+		</div>
 	</main>
 </template>
 
@@ -75,6 +78,9 @@
 	:global(body) {
 		background-image: linear-gradient(var(--primary), var(--primary-dark));
 		color: #fff;
+	}
+
+	main {
 		display: flex;
 		justify-content: center;
 		align-items: center;

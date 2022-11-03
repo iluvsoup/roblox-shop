@@ -17,7 +17,7 @@
 
 	<SvelteToast {options} />
 	<slot />
-	<p class="footer">Made by <a href="https://github.com/iluvsoup">iluvsoup</a></p>
+	<a class="footer" href="https://github.com/iluvsoup">Made by iluvsoup</a>
 </template>
 
 <style>
@@ -54,10 +54,25 @@
 		text-align: center;
 		margin: 0;
 		padding: 0;
+		color: #fff;
+		text-decoration: none;
+		display: inline;
 	}
 
-	.footer a {
-		color: lightblue;
-		text-decoration: none;
+	/* weirdest css I've written in my life */
+	.footer::after {
+		content: "";
+		height: 2px;
+		width: 0%;
+		transform: translate(-50%, 0);
+		left: 50%;
+		display: block;
+		position: absolute;
+		background: #fff;
+		transition: width 0.5s ease;
+	}
+
+	.footer:hover::after {
+		width: 100%;
 	}
 </style>
