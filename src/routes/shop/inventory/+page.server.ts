@@ -9,7 +9,7 @@ import { verify } from "jsonwebtoken";
 import { JWT_SECRET } from "$env/static/private";
 import { TOKEN_DURATION } from "$lib/constants";
 
-import type { Actions, PageServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types";
 
 // Stupid thing was complaining so I had to do this
 interface Token {
