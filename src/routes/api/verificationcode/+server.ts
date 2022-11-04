@@ -6,6 +6,8 @@ export const POST: RequestHandler = async ({ request }) => {
 	const data = await request.json();
 	const uuid = crypto.randomUUID();
 
+	console.log(request);
+
 	await redis.connect();
 	await redis.set(uuid, data.uid);
 	// await redis.expire(uuid, 600)
