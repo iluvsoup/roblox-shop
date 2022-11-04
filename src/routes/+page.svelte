@@ -28,7 +28,7 @@
 			opacity: {
 				animation: {
 					enable: true,
-					startValue: "max",
+					startValue: "random",
 					minimumValue: 0,
 					speed: { min: 0.4, max: 1 }
 				}
