@@ -3,10 +3,9 @@ import { redis } from "$lib/server/redis";
 import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ request }) => {
+	console.log(request.headers);
 	const data = await request.json();
 	const uuid = crypto.randomUUID();
-
-	console.log(request);
 
 	await redis.connect();
 	await redis.set(uuid, data.uid);
