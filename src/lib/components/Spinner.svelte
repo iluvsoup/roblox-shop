@@ -1,6 +1,6 @@
 <script lang="ts">
-	// import {}
+	import FontAwesome from "svelte-fa";
+	import { faGear } from "@fortawesome/free-solid-svg-icons";
 </script>
 
-<div class="gear">
-</div>
+<FontAwesome icon={faGear} spin />
