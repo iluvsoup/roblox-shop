@@ -14,3 +14,7 @@ export const errorToast = (msg: string) => {
 		}
 	});
 };
+
+export const clearToasts = () => {
+	toast.pop(0);
+};

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Particles from "svelte-particles/src/Particles.svelte";
-	import { errorToast } from "$lib/toast";
+	import { errorToast, clearToasts } from "$lib/toast";
 	import { loadParticles } from "$lib/particles";
 
 	import type { ActionData } from "./$types";
@@ -44,13 +44,15 @@
 		await loadParticles(engine);
 	};
 
+	clearToasts();
+	
 	if (form?.missing) {
 		errorToast("You must enter a verification code!");
 	}
 
 	if (form?.incorrect) {
 		errorToast("Invalid verification code! It might be expired, try refreshing it in Roblox!");
-	}
+}
 </script>
 
 <svelte:head>
@@ -71,6 +73,7 @@
 				<button>Verify!</button>
 			</form>
 		</div>
+
 	</main>
 </template>
 

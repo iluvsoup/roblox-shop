@@ -12,7 +12,7 @@ specifiers:
   '@types/jsonwebtoken': ^8.5.9
   '@typescript-eslint/eslint-plugin': ^5.27.0
   '@typescript-eslint/parser': ^5.27.0
-  '@zerodevx/svelte-toast': 0.7.2
+  '@zerodevx/svelte-toast': ^0.8.1
   autoprefixer: ^10.4.13
   esbuild: ^0.15.13
   eslint: ^8.16.0
@@ -54,7 +54,7 @@ devDependencies:
   '@types/jsonwebtoken': 8.5.9
   '@typescript-eslint/eslint-plugin': 5.42.0_6xw5wg2354iw4zujk2f3vyfrzu
   '@typescript-eslint/parser': 5.42.0_wyqvi574yv7oiwfeinomdzmc3m
-  '@zerodevx/svelte-toast': 0.7.2
+  '@zerodevx/svelte-toast': 0.8.1
   autoprefixer: 10.4.13_postcss@8.4.18
   esbuild: 0.15.13
   eslint: 8.26.0
@@ -601,8 +601,8 @@ packages:
       - supports-color
     dev: true
 
-  /@zerodevx/svelte-toast/0.7.2:
-    resolution: {integrity: sha512-vWiY6IqsstcOoQ8PFBuFuxgPkj1JFAGhUF9gC7wLx7c5A9SSfdtxWs/39ekGSIeyJK0yqWhTcmzGrCEWSELzDw==}
+  /@zerodevx/svelte-toast/0.8.1:
+    resolution: {integrity: sha512-XofCfaHj79uNiKc5leWUxO6LP/Xcawvi3B6Kb1gPCaBf/X5//HdZ/OIfG3z//QuKyFRUmEkDkoMzmbYWTUW2jw==}
     dev: true
 
   /abbrev/1.1.1:

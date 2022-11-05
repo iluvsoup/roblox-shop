@@ -26,21 +26,14 @@
 		const url = await res.text();
 		goto(url);
 	}
-
-	function redirect() {
-		goto(`/shop/products/${id}`)
-	}
 </script>
 
 <template>
 	<div class="container">
-		<img
-			class="image"
-			src={data.imageurl}
-			alt="Product"
-			on:click={redirect}
-			on:keydown={redirect}
-		/>
+		<a href={`/shop/products/${id}`}>
+			<img class="image" src={data.imageurl} alt="Product" />
+		</a>
+
 		<p class="name">{data.name}</p>
 
 		{#if priceObject.type == "recurring"}
@@ -67,11 +60,12 @@
 <style>
 	.container {
 		width: 15rem;
-		background-color: #eee;
 		height: 20rem;
+		background-color: #eee;
+		border-radius: 0.5rem;
 		transition: transform, box-shadow;
-		transition-duration: 0.25s;
-		transition-timing-function: ease;
+		transition-duration: 0.5s;
+		transition-timing-function: cubic-bezier(.4,0,.2,1);
 	}
 
 	.container:hover {
@@ -88,6 +82,8 @@
 	.image {
 		width: 100%;
 		height: 50%;
+		border-top-left-radius: 0.5rem;
+		border-top-right-radius: 0.5rem;
 		cursor: pointer;
 	}
 
