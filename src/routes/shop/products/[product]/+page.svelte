@@ -54,8 +54,6 @@
 	{:else}
 		<button on:click={checkout}>BUY NOW!!!</button>
 	{/if}
-
-	<a href="/shop">Go back</a>
 </template>
 
 <style>

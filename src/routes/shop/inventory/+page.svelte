@@ -43,8 +43,6 @@
 			{/each}
 		</div>
 	{/if}
-
-	<a href="/shop">Go back</a>
 </template>
 
 <style>
