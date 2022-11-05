@@ -1,9 +1,13 @@
 import { redis } from "$lib/server/redis";
+import { error } from "@sveltejs/kit";
 
 import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ request }) => {
-	console.log(request.headers);
+	if (request.headers.get("x-api-secret") !== process.env.API_SECRET!) {
+		throw error(401, { message: "Unauthorized" });
+	}
+
 	const data = await request.json();
 	const uuid = crypto.randomUUID();
 
