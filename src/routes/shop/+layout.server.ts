@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 
 import { TOKEN_DURATION } from "$lib/constants";
 
-import type { Actions } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
 
 // Stupid thing was complaining so I had to do this
