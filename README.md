@@ -32,7 +32,10 @@ PUBLIC_STRIPE_KEY=
 JWT_SECRET=
 WEBHOOK_SECRET=
 DATABASE_URL=
+API_SECRET=
 ```
+
+`API_SECRET` is for authenticating roblox to server communication
 
 If you want to test the Roblox authentication you must have an instance of Redis running on your machine
 
