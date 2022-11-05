@@ -20,6 +20,10 @@ export const POST: RequestHandler = async ({ request }) => {
 };
 
 export const DELETE: RequestHandler = async ({ request }) => {
+	if (request.headers.get("x-api-secret") !== process.env.API_SECRET!) {
+		throw error(401, { message: "Unauthorized" });
+	}
+
 	const data = await request.json();
 
 	await redis.connect();
