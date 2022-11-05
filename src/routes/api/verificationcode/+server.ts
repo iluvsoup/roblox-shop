@@ -4,9 +4,6 @@ import { error } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ request }) => {
-	console.log(process.env.API_SECRET!);
-	console.log(request.headers.get("x-api-secret"));
-
 	if (request.headers.get("x-api-secret") !== process.env.API_SECRET!) {
 		throw error(401, { message: "Unauthorized" });
 	}
