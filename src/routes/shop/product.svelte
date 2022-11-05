@@ -26,6 +26,10 @@
 		const url = await res.text();
 		goto(url);
 	}
+
+	function redirect() {
+		goto(`/shop/products/${id}`)
+	}
 </script>
 
 <template>
@@ -34,7 +38,8 @@
 			class="image"
 			src={data.imageurl}
 			alt="Product"
-			on:click={() => goto(`/shop/products/${id}`)}
+			on:click={redirect}
+			on:keydown={redirect}
 		/>
 		<p class="name">{data.name}</p>
 

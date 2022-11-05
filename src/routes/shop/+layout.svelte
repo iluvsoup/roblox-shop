@@ -24,6 +24,10 @@
 </main>
 
 <style>
+	:global(body) {
+		background-color: var(--primary);
+	}
+
 	.avatar {
 		border-radius: 50%;
 	}
