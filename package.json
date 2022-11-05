@@ -39,7 +39,6 @@
 		"stripe": "^10.13.0",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
-		"svelte-fa": "^3.0.3",
 		"svelte-particles": "^2.5.1",
 		"svelte-preprocess": "^4.10.6",
 		"tslib": "^2.3.1",

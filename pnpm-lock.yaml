@@ -27,7 +27,6 @@ specifiers:
   stripe: ^10.13.0
   svelte: ^3.44.0
   svelte-check: ^2.7.1
-  svelte-fa: ^3.0.3
   svelte-particles: ^2.5.1
   svelte-preprocess: ^4.10.6
   tslib: ^2.3.1
@@ -39,9 +38,9 @@ specifiers:
 devDependencies:
   '@prisma/client': 4.5.0_prisma@4.5.0
   '@stripe/stripe-js': 1.42.1
-  '@sveltejs/adapter-auto': 1.0.0-next.86
+  '@sveltejs/adapter-auto': 1.0.0-next.87
   '@sveltejs/adapter-vercel': 1.0.0-next.81
-  '@sveltejs/kit': 1.0.0-next.532_svelte@3.52.0+vite@3.2.2
+  '@sveltejs/kit': 1.0.0-next.535_svelte@3.52.0+vite@3.2.2
   '@types/ioredis': 4.28.10
   '@types/jsonwebtoken': 8.5.9
   '@typescript-eslint/eslint-plugin': 5.42.0_6xw5wg2354iw4zujk2f3vyfrzu
@@ -63,7 +62,6 @@ devDependencies:
   stripe: 10.15.0
   svelte: 3.52.0
   svelte-check: 2.9.2_xyvwwpusdp7eiuesisaivc7wmm
-  svelte-fa: 3.0.3
   svelte-particles: 2.5.1_svelte@3.52.0
   svelte-preprocess: 4.10.7_4n3z2octtzg5pdokl7pjruqnki
   tslib: 2.4.1
@@ -285,11 +283,11 @@ packages:
     resolution: {integrity: sha512-5H7P7rVNDMdiJCUKsKXRUyr6IjZ4/9f8FB62NCa5O4rDftRfs4u2dPjjHs/tIs4OLeBB6oSzJIkE7cPr4ykPHg==}
     dev: true
 
-  /@sveltejs/adapter-auto/1.0.0-next.86:
-    resolution: {integrity: sha512-IKW1SUiXPPZ+qumQu5v48VH4aGmYiSLS83qbDlwfNmoRQejgU54f1M5s+isVmnr9kIOwbMQ0CfYhmZWJ7sEv6Q==}
+  /@sveltejs/adapter-auto/1.0.0-next.87:
+    resolution: {integrity: sha512-0MPCKo3aY1i3oESI6ZZikOB+MDV89WlWj4ot+/WEsP1J2uDA2HSirCZYWDnLB5i00HDHzqwBOfDDwHJ00pPC4w==}
     dependencies:
       '@sveltejs/adapter-cloudflare': 1.0.0-next.40
-      '@sveltejs/adapter-netlify': 1.0.0-next.83
+      '@sveltejs/adapter-netlify': 1.0.0-next.84
       '@sveltejs/adapter-vercel': 1.0.0-next.81
     transitivePeerDependencies:
       - encoding
@@ -304,8 +302,8 @@ packages:
       worktop: 0.8.0-next.14
     dev: true
 
-  /@sveltejs/adapter-netlify/1.0.0-next.83:
-    resolution: {integrity: sha512-4hPKs7T1v81KatpMm8AgPEe4LSvoRNWiooxbSlLL8su/nnVe2FHPlpGgRcdSsE9VUmlkyd+4YIbVFG0ZcYO4LQ==}
+  /@sveltejs/adapter-netlify/1.0.0-next.84:
+    resolution: {integrity: sha512-i4vf3to0sV/iI39UPPhlVjOP+jZCZ048M4oHkqDM1FfJwACwgXaysdF2t4X0DV3loLmrkfarwbatjbGIECA9uQ==}
     dependencies:
       '@iarna/toml': 2.2.5
       esbuild: 0.15.13
@@ -322,14 +320,14 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.532_svelte@3.52.0+vite@3.2.2:
-    resolution: {integrity: sha512-g+t+dncoz/DBc1mfwSfBaIBqE5pl0caMUy7yZzjsnyw0WG3AevC04d2KfTOgtOMgXVDnSVqZxlTR+MM5tnKeyw==}
+  /@sveltejs/kit/1.0.0-next.535_svelte@3.52.0+vite@3.2.2:
+    resolution: {integrity: sha512-sbVFeidRGYKqahVWATuvl9PVnIDA/DvXUuq3LAV7eLXf9LWsdMt+9OhXmz8Ltxv8ov3+Ph6gcVSBvisF4BEvBQ==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
     peerDependencies:
       svelte: ^3.44.0
-      vite: ^3.1.0
+      vite: ^3.2.0
     dependencies:
       '@sveltejs/vite-plugin-svelte': 1.1.0_svelte@3.52.0+vite@3.2.2
       '@types/cookie': 0.5.1
@@ -2712,10 +2710,6 @@ packages:
       - sass
       - stylus
       - sugarss
-    dev: true
-
-  /svelte-fa/3.0.3:
-    resolution: {integrity: sha512-GIikJjcVCD+5Y/x9hZc2R4gvuA0gVftacuWu1a+zVQWSFjFYZ+hhU825x+QNs2slsppfrgmFiUyU9Sz9gj4Rdw==}
     dev: true
 
   /svelte-hmr/0.15.0_svelte@3.52.0:
