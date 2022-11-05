@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { navigating } from "$app/stores";
-	import Spinner from "$lib/components/Spinner.svelte";
 	import { SvelteToast } from "@zerodevx/svelte-toast";
+	import { clearToasts } from "$lib/toast";
+	import Spinner from "$lib/components/Spinner.svelte";
 
 	import type { SvelteToastOptions } from "@zerodevx/svelte-toast";
 
 	const options: SvelteToastOptions = {};
+
+	clearToasts()
 </script>
 
 <template>
@@ -14,8 +17,10 @@
 			<Spinner />
 		</div>
 	{/if}
+
 	<SvelteToast {options} />
 	<slot />
+
 	<a class="footer" href="https://github.com/iluvsoup">Made by iluvsoup</a>
 </template>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Particles from "svelte-particles/src/Particles.svelte";
-	import { errorToast, clearToasts } from "$lib/toast";
+	import { errorToast } from "$lib/toast";
 	import { loadParticles } from "$lib/particles";
 
 	import type { ActionData } from "./$types";
@@ -43,8 +43,6 @@
 		// unnecessary?
 		await loadParticles(engine);
 	};
-
-	clearToasts();
 	
 	if (form?.missing) {
 		errorToast("You must enter a verification code!");
