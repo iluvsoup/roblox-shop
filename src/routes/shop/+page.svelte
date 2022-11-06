@@ -38,10 +38,16 @@
 </template>
 
 <style>
+	h1 {
+		margin-top: 0;
+		margin-bottom: 0;
+		color: #fff;
+	}
+
 	.products {
 		display: flex;
 		flex-wrap: wrap;
-		margin-top: 1rem;
+		margin-top: 0.5rem;
 		gap: 0.5rem;
 	}
 

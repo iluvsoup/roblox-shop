@@ -4,6 +4,8 @@
 	export let data: PageData;
 </script>
 
+<a href="#main" class="skip">Skip to main content</a>
+
 <header>
 	<img class="avatar" src={data.avatarurl} alt="Roblox avatar" />
 	<nav>
@@ -19,7 +21,7 @@
 	</nav>
 </header>
 
-<main>
+<main id="main">
 	<slot />
 </main>
 
@@ -28,8 +30,25 @@
 		background-color: var(--primary);
 	}
 
+	.skip {
+		position: fixed;
+		transform: translateY(-100%);
+		z-index: 100;
+		color: #000;
+		background-color: #fff;
+		padding: 1rem;
+	}
+
+	.skip:focus {
+		transform: none;
+	}
+
 	.avatar {
 		border-radius: 50%;
+	}
+
+	main {
+		padding: 8px;
 	}
 
 	header {
