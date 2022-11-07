@@ -14,12 +14,24 @@
 			link: "/shop/inventory"
 		}
 	]
+
+	let loadingImage: boolean;
 </script>
 
 <a tabindex="0" href="#main" class="skip">Skip to main content</a>
 
 <header>
-	<img class="avatar" src={data.avatarurl} alt="Roblox avatar" />
+	{#if loadingImage}
+		<div class="loading" />
+	{/if}
+
+	<img
+		class="avatar"
+		on:loadstart={() => { loadingImage = true }}
+		on:load={() => { loadingImage = false }}
+		src={data.avatarurl}
+		alt="Roblox avatar"
+	/>
 	<Nav routes={routes} />
 </header>
 
@@ -47,6 +59,13 @@
 
 	.avatar {
 		border-radius: 50%;
+	}
+
+	.loading {
+		border-radius: 50%;
+		width: 48px;
+		height: 48px;
+		background-color: #fff;
 	}
 
 	main {

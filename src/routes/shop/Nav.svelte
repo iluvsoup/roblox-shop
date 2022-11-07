@@ -27,7 +27,7 @@
 			moveSmooth = true;
 		}
 		
-		if (previousTarget) {
+		if (previousTarget && previousTarget.id == "navitem") {
 			previousTarget.blur();
 		}
 		
@@ -43,7 +43,7 @@
 	}
 	
 	const focusOut = (event: any) => {
-		if (!event.relatedTarget || event.relatedTarget.id !== "navlink") {
+		if (!event.relatedTarget || event.relatedTarget.id !== "navitem") {
 			focusing = false;
 		}
 	}
@@ -83,17 +83,15 @@
       on:mouseover={hover}
       on:mouseleave={stopHover}
       on:focusout={focusOut}
-      on:focus
     >
       {#each routes as route}
         <li>
           <a
             tabindex="0"
-            id="navlink"
+            id="navitem"
             on:mouseover={mouseOver}
             on:focusin={focusIn}
             href={route.link}
-            on:focus
           >
             {route.name}
           </a>

@@ -22,7 +22,9 @@
 	<SvelteToast {options} />
 	<slot />
 
-	<a class="footer" href="https://github.com/iluvsoup">Made by iluvsoup</a>
+	<footer>
+		<a class="footer" href="https://github.com/iluvsoup">Made by iluvsoup</a>
+	</footer>
 </template>
 
 <style>
