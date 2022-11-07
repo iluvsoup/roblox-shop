@@ -16,4 +16,9 @@ declare namespace App {
 		price: string | undefined;
 		priceObject: import("stripe").Stripe.Price;
 	}
+
+	interface Route {
+		name: string;
+		link: string;
+	}
 }

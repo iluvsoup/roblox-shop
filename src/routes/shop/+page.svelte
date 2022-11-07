@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Product from "./product.svelte";
+	import Product from "./Product.svelte";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
