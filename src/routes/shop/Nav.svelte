@@ -1,24 +1,17 @@
 <script lang="ts">
+	import { page } from "$app/stores";
+
   export let routes: App.Route[];
 
   let hovering = false;
 	let focusing = false;
 	
-	// let visible = false;
 	$: visible = hovering || focusing;
 	
 	let moveSmooth = false;
 	let highlightOffset: number;
 	let highlightWidth: number;
 	let previousTarget: any;
-	
-	// const updateVisible = () => {
-	// 	if (hovering || focusing) {
-	// 		visible = true;
-	// 	} else {
-	// 		visible = false;
-	// 	}
-	// }
 	
 	const mouseOver = (event: any) => {
 		if (!visible) {
@@ -83,14 +76,17 @@
       on:mouseover={hover}
       on:mouseleave={stopHover}
       on:focusout={focusOut}
+			on:focus
     >
       {#each routes as route}
         <li>
           <a
             tabindex="0"
             id="navitem"
-            on:mouseover={mouseOver}
+						class:current={$page.route.id === route.link}
+						on:mouseover={mouseOver}
             on:focusin={focusIn}
+						on:focus
             href={route.link}
           >
             {route.name}
@@ -127,12 +123,17 @@
 		height: 100%;
 		align-items: center;
 	}
-	
+
 	a {
 		color: #888;
 		padding: 16px 12px;
     text-decoration: none;
 		transition: color 0.15s ease;
+		font-size: 18px;
+	}
+	
+	a.current {
+		color: #fff;
 	}
 	
 	a:hover, a:focus {
@@ -144,7 +145,7 @@
 		border-radius: 4px;
 		z-index: 1;
 		background-color: #333;
-		height: 2rem;
+		height: 36px;
 		position: absolute;
 		opacity: 0;
 		transition-property: opacity;
@@ -165,7 +166,7 @@
   }
 
   button {
-		width: 5rem;
+		width: 5em;
 		height: 2rem;
 		border-radius: 0.5rem;
 		border: none;

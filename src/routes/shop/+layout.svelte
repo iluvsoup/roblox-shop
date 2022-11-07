@@ -12,6 +12,10 @@
 		{
 			name: "Inventory",
 			link: "/shop/inventory"
+		},
+		{
+			name: "FAQ",
+			link: "/shop/faq"
 		}
 	]
 
@@ -41,7 +45,7 @@
 
 <style>
 	:global(body) {
-		background-color: var(--primary);
+		background-color: var(--primary-moody);
 	}
 
 	.skip {
@@ -78,5 +82,6 @@
 		gap: 1rem;
 		padding: 1rem;
 		background: #000;
+		border-bottom: solid 1px #333;
 	}
 </style>

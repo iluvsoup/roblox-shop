@@ -33,6 +33,7 @@
 	:root {
 		--primary: rgb(50, 50, 50);
 		--primary-dark: rgb(40, 40, 40);
+		--primary-moody: rgb(15, 15, 15);
 		--secondary: rgb(0, 85, 255);
 		--secondary-alternate: rgb(0, 47, 255);
 		font-family: Poppins;
