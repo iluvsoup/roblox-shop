@@ -1,53 +1,53 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 
-  export let routes: App.Route[];
+	export let routes: App.Route[];
 
-  let hovering = false;
+	let hovering = false;
 	let focusing = false;
-	
+
 	$: visible = hovering || focusing;
-	
+
 	let moveSmooth = false;
 	let highlightOffset: number;
 	let highlightWidth: number;
 	let previousTarget: any;
-	
+
 	const mouseOver = (event: any) => {
 		if (!visible) {
 			moveSmooth = false;
 		} else {
 			moveSmooth = true;
 		}
-		
+
 		if (previousTarget && previousTarget.id == "navitem") {
 			previousTarget.blur();
 		}
-		
+
 		highlightOffset = event.target.offsetLeft;
 		highlightWidth = event.target.offsetWidth;
-		
-		previousTarget = event.target
-	}
-	
+
+		previousTarget = event.target;
+	};
+
 	const focusIn = (event: any) => {
 		focusing = true;
 		mouseOver(event);
-	}
-	
+	};
+
 	const focusOut = (event: any) => {
 		if (!event.relatedTarget || event.relatedTarget.id !== "navitem") {
 			focusing = false;
 		}
-	}
-	
+	};
+
 	const hover = () => {
-		hovering = true
-	}
-	
+		hovering = true;
+	};
+
 	const stopHover = () => {
-		hovering = false
-	}
+		hovering = false;
+	};
 </script>
 
 <!--<nav>
@@ -63,51 +63,51 @@
 	</nav>-->
 
 <nav>
-  <ul>
-    <div
-      class="highlight"
-      class:visible
-      class:moveSmooth
-      style="left: {highlightOffset}px; width: {highlightWidth}px"
-    ></div>
+	<ul>
+		<div
+			class="highlight"
+			class:visible
+			class:moveSmooth
+			style="left: {highlightOffset}px; width: {highlightWidth}px"
+		/>
 
-    <div
-      class="links"
-      on:mouseover={hover}
-      on:mouseleave={stopHover}
-      on:focusout={focusOut}
+		<div
+			class="links"
+			on:mouseover={hover}
+			on:mouseleave={stopHover}
+			on:focusout={focusOut}
 			on:focus
-    >
-      {#each routes as route}
-        <li>
+		>
+			{#each routes as route}
+				<li>
 					<a
-            tabindex="0"
-            id="navitem"
+						tabindex="0"
+						id="navitem"
 						class:current={$page.route.id === route.link}
 						on:mouseover={mouseOver}
-            on:focusin={focusIn}
+						on:focusin={focusIn}
 						on:focus
-            href={route.link}
-						>
-            {route.name}
-          </a>
-        </li>
-      {/each}
-    </div>
+						href={route.link}
+					>
+						{route.name}
+					</a>
+				</li>
+			{/each}
+		</div>
 
-    <li class="logout">
-      <form method="POST" action="?/shop">
-        <button formaction="?/logout">Log out</button>
-      </form>
-    </li>
-  </ul>
+		<li class="logout">
+			<form method="POST" action="?/shop">
+				<button formaction="?/logout">Log out</button>
+			</form>
+		</li>
+	</ul>
 </nav>
 
 <style>
-  nav {
-    width: 100%;
-    height: 100%;
-  }
+	nav {
+		width: 100%;
+		height: 100%;
+	}
 
 	ul {
 		display: flex;
@@ -116,10 +116,10 @@
 		padding: 0;
 		align-items: center;
 	}
-	
+
 	.links {
 		display: flex;
-    z-index: 2;
+		z-index: 2;
 		height: 100%;
 		align-items: center;
 	}
@@ -128,20 +128,21 @@
 		text-align: center;
 		color: #888;
 		padding: 4px 12px;
-    text-decoration: none;
+		text-decoration: none;
 		transition: color 0.15s ease;
 		font-size: 18px;
 	}
-	
+
 	a.current {
 		color: #fff;
 	}
 
-	a:hover, a:focus {
+	a:hover,
+	a:focus {
 		outline: none;
 		color: #fff;
 	}
-	
+
 	.highlight {
 		border-radius: 0.5rem;
 		z-index: 1;
@@ -153,20 +154,20 @@
 		transition-timing-function: ease;
 		transition-duration: 0.15s;
 	}
-	
+
 	.highlight.visible {
 		opacity: 1;
 	}
-	
+
 	.highlight.moveSmooth {
 		transition-property: all;
 	}
 
-  form {
-    display: inline;
-  }
+	form {
+		display: inline;
+	}
 
-  button {
+	button {
 		width: 5em;
 		height: 2rem;
 		border-radius: 0.5rem;
@@ -190,7 +191,7 @@
 		color: var(--secondary);
 	}
 
-  .logout {
-    margin-left: auto;
-  }
+	.logout {
+		margin-left: auto;
+	}
 </style>

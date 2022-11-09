@@ -17,7 +17,7 @@
 			name: "FAQ",
 			link: "/shop/faq"
 		}
-	]
+	];
 
 	let loadingImage: boolean;
 </script>
@@ -31,12 +31,16 @@
 
 	<img
 		class="avatar"
-		on:loadstart={() => { loadingImage = true }}
-		on:load={() => { loadingImage = false }}
+		on:loadstart={() => {
+			loadingImage = true;
+		}}
+		on:load={() => {
+			loadingImage = false;
+		}}
 		src={data.avatarurl}
 		alt="Roblox avatar"
 	/>
-	<Nav routes={routes} />
+	<Nav {routes} />
 </header>
 
 <main id="main">

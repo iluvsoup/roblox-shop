@@ -2,14 +2,14 @@
 	import { navigating } from "$app/stores";
 	import { SvelteToast } from "@zerodevx/svelte-toast";
 	import { clearToasts } from "$lib/toast";
-	
+
 	import Spinner from "$lib/components/Spinner.svelte";
 
 	import type { SvelteToastOptions } from "@zerodevx/svelte-toast";
 
 	const options: SvelteToastOptions = {};
 
-	clearToasts()
+	clearToasts();
 </script>
 
 <template>

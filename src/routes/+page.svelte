@@ -43,14 +43,14 @@
 		// unnecessary?
 		await loadParticles(engine);
 	};
-	
+
 	if (form?.missing) {
 		errorToast("You must enter a verification code!");
 	}
 
 	if (form?.incorrect) {
 		errorToast("Invalid verification code! It might be expired, try refreshing it in Roblox!");
-}
+	}
 </script>
 
 <svelte:head>
@@ -71,7 +71,6 @@
 				<button>Verify!</button>
 			</form>
 		</div>
-
 	</main>
 </template>
 
