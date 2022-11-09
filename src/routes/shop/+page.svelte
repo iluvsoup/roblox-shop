@@ -27,10 +27,12 @@
 				{#each products as product}
 					<Product data={product} uid={data.uid} />
 				{/each}
-			{:catch}
+			{:catch error}
+				<p>oops {error}</p>
 				{@html errorToast("Could not load data")}
 			{/await}
-		{:catch}
+		{:catch error}
+			<p>oops {error}</p>
 			{@html errorToast("Could not load products")}
 		{/await}
 	</div>

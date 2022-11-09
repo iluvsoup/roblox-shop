@@ -1,8 +1,8 @@
 import { prisma } from "$lib/server/prisma";
 import { stripe } from "$lib/server/stripe";
-import { error } from "@sveltejs/kit";
-import jwt from "jsonwebtoken";
+import { error, json } from "@sveltejs/kit";
 
+import jwt from "jsonwebtoken";
 import { TOKEN_DURATION } from "$lib/constants";
 
 import type { RequestHandler } from "./$types";
@@ -49,9 +49,7 @@ export const GET: RequestHandler = async ({ cookies }) => {
 		});
 	}
 
-	return new Response(
-		JSON.stringify({
-			products: productdata
-		})
-	);
+	return json({
+		products: productdata
+	});
 };
