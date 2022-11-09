@@ -80,7 +80,7 @@
     >
       {#each routes as route}
         <li>
-          <a
+					<a
             tabindex="0"
             id="navitem"
 						class:current={$page.route.id === route.link}
@@ -88,7 +88,7 @@
             on:focusin={focusIn}
 						on:focus
             href={route.link}
-          >
+						>
             {route.name}
           </a>
         </li>
@@ -125,8 +125,9 @@
 	}
 
 	a {
+		text-align: center;
 		color: #888;
-		padding: 16px 12px;
+		padding: 4px 12px;
     text-decoration: none;
 		transition: color 0.15s ease;
 		font-size: 18px;
@@ -135,14 +136,14 @@
 	a.current {
 		color: #fff;
 	}
-	
+
 	a:hover, a:focus {
 		outline: none;
 		color: #fff;
 	}
 	
 	.highlight {
-		border-radius: 4px;
+		border-radius: 0.5rem;
 		z-index: 1;
 		background-color: #333;
 		height: 36px;

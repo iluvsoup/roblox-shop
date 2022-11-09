@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Product from "./Product.svelte";
 	import type { PageData } from "./$types";
+	import { errorToast } from "$lib/toast";
 
 	export let data: PageData;
 
@@ -26,13 +27,11 @@
 				{#each products as product}
 					<Product data={product} uid={data.uid} />
 				{/each}
-			{:catch err}
-				<p class="red">Could not load data</p>
-				<p class="red">{err}</p>
+			{:catch}
+				{@html errorToast("Could not load data")}
 			{/await}
-		{:catch err}
-			<p class="red">Could not load products</p>
-			<p class="red">{err}</p>
+		{:catch}
+			{@html errorToast("Could not load products")}
 		{/await}
 	</div>
 </template>
@@ -51,7 +50,7 @@
 		gap: 0.5rem;
 	}
 
-	.red {
+	/* .red {
 		color: red;
-	}
+	} */
 </style>

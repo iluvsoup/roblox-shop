@@ -45,7 +45,7 @@
 
 <style>
 	:global(body) {
-		background-color: var(--primary-moody);
+		background-color: var(--primary-dark);
 	}
 
 	.skip {

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { PageData } from "./$types";
-
-	export let data: PageData;
+	import { errorToast } from "$lib/toast";
 
 	let redeemableCode: string | null;
+
+	const inventoryPromise = fetch("/api/inventory");
 </script>
 
 <svelte:head>
@@ -29,18 +29,30 @@
 		>
 	{:else}
 		<div class="products">
-			{#each data.products as product}
-				<div class="product">
-					<img class="image" alt="product" src={product.data.images[0]} />
-					<p class="name">{product.data.name}</p>
-					<button
-						class="redeem"
-						on:click={() => {
-							redeemableCode = product.code;
-						}}>REDEEM</button
-					>
-				</div>
-			{/each}
+			{#await inventoryPromise}
+				<p>Loading</p>
+			{:then response}
+				{#await response.json()}
+					<p>Getting data</p>
+				{:then data}
+					{#each data.products as product}
+						<div class="product">
+							<img class="image" alt="product" src={product.data.images[0]} />
+							<p class="name">{product.data.name}</p>
+							<button
+								class="redeem"
+								on:click={() => {
+									redeemableCode = product.code;
+								}}>REDEEM</button
+							>
+						</div>
+					{/each}
+				{:catch}
+					{@html errorToast("Could not load data")}
+				{/await}
+			{:catch}
+				{@html errorToast("Could not load inventory")}
+			{/await}
 		</div>
 	{/if}
 </template>
