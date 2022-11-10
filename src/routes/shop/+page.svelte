@@ -1,29 +1,22 @@
 <script lang="ts">
 	import Product from "./Product.svelte";
 	import { errorToast } from "$lib/toast";
+	import { URL } from "$lib/constants";
 
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
 
-	const productsPromise = fetch("/api/products");
-
 	const loadProducts = async (): Promise<App.Product[]> => {
-		try {
-			const response = await productsPromise;
-			try {
-				const data = await response.json();
-				return data;
-			} catch {
-				console.log("error");
-				errorToast("Could not load data");
-				throw new Error("Could not load data");
-			}
-		} catch {
-			console.log("error");
-			errorToast("Could not load products");
-			throw new Error("Could not load products");
+		const response = await fetch(`${URL}/api/products`);
+
+		if (!response.ok) {
+			errorToast("Failed to fetch products");
+			throw new Error();
 		}
+
+		const data = await response.json();
+		return data;
 	};
 </script>
 
@@ -39,11 +32,15 @@
 		{#await loadProducts()}
 			<p>Loading products</p>
 		{:then products}
-			{#each products as product}
-				<Product data={product} uid={data.uid} />
-			{/each}
-		{:catch error}
-			<p>error: {error}</p>
+			{#if products.length === 0}
+				<h2>Nothing here yet!</h2>
+			{:else}
+				{#each products as product}
+					<Product data={product} uid={data.uid} />
+				{/each}
+			{/if}
+		{:catch}
+			<h2>An error occured!</h2>
 		{/await}
 	</div>
 </template>

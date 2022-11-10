@@ -48,6 +48,11 @@
 </main>
 
 <style>
+	:root {
+		--toastContainerTop: 6rem;
+		--toastContainerRight: 1rem;
+	}
+
 	:global(body) {
 		background-color: var(--primary-dark);
 	}

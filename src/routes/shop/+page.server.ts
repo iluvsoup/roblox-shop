@@ -1,5 +1,6 @@
 import { redirect } from "@sveltejs/kit";
 import type { Actions } from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
 
 export const ssr = true;
 

@@ -17,9 +17,15 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		throw redirect(303, "/");
 	}
 
-	const decoded = jwt.verify(session, process.env.JWT_SECRET!, {
-		maxAge: TOKEN_DURATION
-	}) as Token;
+	let decoded;
+
+	try {
+		decoded = jwt.verify(session, process.env.JWT_SECRET!, {
+			maxAge: TOKEN_DURATION
+		}) as Token;
+	} catch {
+		throw error(400, { message: "Invalid session token" });
+	}
 
 	const uid = decoded.uid;
 

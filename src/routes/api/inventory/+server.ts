@@ -32,6 +32,7 @@ export const GET: RequestHandler = async ({ cookies }) => {
 	const uid = decoded.uid;
 	let products;
 
+	// TODO: FIX TRY CATCH
 	try {
 		products = await prisma.product.findMany({ where: { ownerUid: uid } });
 	} catch (err) {

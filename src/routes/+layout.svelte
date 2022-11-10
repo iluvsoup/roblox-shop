@@ -19,8 +19,8 @@
 		</div>
 	{/if}
 
-	<SvelteToast {options} />
 	<slot />
+	<SvelteToast {options} />
 
 	<footer>
 		<a class="footer" href="https://github.com/iluvsoup">Made by iluvsoup</a>
