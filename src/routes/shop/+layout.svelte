@@ -18,28 +18,13 @@
 			link: "/shop/faq"
 		}
 	];
-
-	let loadingImage: boolean;
 </script>
 
 <a tabindex="0" href="#main" class="skip">Skip to main content</a>
 
 <header>
-	{#if loadingImage}
-		<div class="loading" />
-	{/if}
+	<img class="avatar" src={data.avatarurl} alt="Roblox avatar" />
 
-	<img
-		class="avatar"
-		on:loadstart={() => {
-			loadingImage = true;
-		}}
-		on:load={() => {
-			loadingImage = false;
-		}}
-		src={data.avatarurl}
-		alt="Roblox avatar"
-	/>
 	<Nav {routes} />
 </header>
 
@@ -72,13 +57,9 @@
 
 	.avatar {
 		border-radius: 50%;
-	}
-
-	.loading {
-		border-radius: 50%;
 		width: 48px;
 		height: 48px;
-		background-color: #fff;
+		background: #333;
 	}
 
 	main {
