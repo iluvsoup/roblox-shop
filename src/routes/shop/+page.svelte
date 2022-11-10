@@ -1,11 +1,30 @@
 <script lang="ts">
 	import Product from "./Product.svelte";
-	import type { PageData } from "./$types";
 	import { errorToast } from "$lib/toast";
+
+	import type { PageData } from "./$types";
 
 	export let data: PageData;
 
 	const productsPromise = fetch("/api/products");
+
+	const loadProducts = async (): Promise<App.Product[]> => {
+		try {
+			const response = await productsPromise;
+			try {
+				const data = await response.json();
+				return data;
+			} catch {
+				console.log("error");
+				errorToast("Could not load data");
+				throw new Error("Could not load data");
+			}
+		} catch {
+			console.log("error");
+			errorToast("Could not load products");
+			throw new Error("Could not load products");
+		}
+	};
 </script>
 
 <svelte:head>
@@ -17,23 +36,14 @@
 	<h1>Products</h1>
 
 	<div class="products">
-		<!-- Not my proudest moment -->
-		{#await productsPromise}
+		{#await loadProducts()}
 			<p>Loading products</p>
-		{:then response}
-			{#await response.json()}
-				<p>Getting data</p>
-			{:then products}
-				{#each products as product}
-					<Product data={product} uid={data.uid} />
-				{/each}
-			{:catch error}
-				<p>oops {error}</p>
-				{@html errorToast("Could not load data")}
-			{/await}
+		{:then products}
+			{#each products as product}
+				<Product data={product} uid={data.uid} />
+			{/each}
 		{:catch error}
-			<p>oops {error}</p>
-			{@html errorToast("Could not load products")}
+			<p>error: {error}</p>
 		{/await}
 	</div>
 </template>
