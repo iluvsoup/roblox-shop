@@ -20,7 +20,7 @@
 			moveSmooth = true;
 		}
 
-		if (previousTarget && previousTarget.id == "navitem") {
+		if (previousTarget && previousTarget.id.startsWith("navitem")) {
 			previousTarget.blur();
 		}
 
@@ -36,7 +36,7 @@
 	};
 
 	const focusOut = (event: any) => {
-		if (!event.relatedTarget || event.relatedTarget.id !== "navitem") {
+		if (!event.relatedTarget || event.relatedTarget.id.startsWith("navitem") == false) {
 			focusing = false;
 		}
 	};
@@ -63,55 +63,41 @@
 	</nav>-->
 
 <nav>
-	<ul>
-		<div
-			class="highlight"
-			class:visible
-			class:moveSmooth
-			style="left: {highlightOffset}px; width: {highlightWidth}px"
-		/>
+	<div
+		class="highlight"
+		class:visible
+		class:moveSmooth
+		style="left: {highlightOffset}px; width: {highlightWidth}px"
+	/>
 
-		<div
-			class="links"
-			on:mouseover={hover}
-			on:mouseleave={stopHover}
-			on:focusout={focusOut}
-			on:focus
-		>
-			{#each routes as route}
-				<li>
-					<a
-						tabindex="0"
-						id="navitem"
-						class:current={$page.route.id === route.link}
-						on:mouseover={mouseOver}
-						on:focusin={focusIn}
-						on:focus
-						href={route.link}
-					>
-						{route.name}
-					</a>
-				</li>
-			{/each}
-		</div>
+	<div class="links" on:mouseover={hover} on:mouseleave={stopHover} on:focusout={focusOut} on:focus>
+		{#each routes as route, index}
+			<a
+				tabindex="0"
+				id={"navitem" + index}
+				class:current={$page.route.id === route.link}
+				on:mouseover={mouseOver}
+				on:focusin={focusIn}
+				on:focus
+				href={route.link}
+			>
+				{route.name}
+			</a>
+		{/each}
+	</div>
 
-		<li class="logout">
-			<form method="POST" action="?/shop">
-				<button formaction="?/logout">Log out</button>
-			</form>
-		</li>
-	</ul>
+	<div class="logout">
+		<form method="POST" action="?/shop">
+			<button formaction="?/logout">Log out</button>
+		</form>
+	</div>
 </nav>
 
 <style>
 	nav {
 		width: 100%;
 		height: 100%;
-	}
-
-	ul {
 		display: flex;
-		list-style: none;
 		margin: 0;
 		padding: 0;
 		align-items: center;
@@ -122,6 +108,8 @@
 		z-index: 2;
 		height: 100%;
 		align-items: center;
+		margin: 0;
+		padding: 0;
 	}
 
 	a {
