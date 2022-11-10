@@ -13,14 +13,14 @@
 	let highlightWidth: number;
 	let previousTarget: any;
 
-	const mouseOver = (event: any) => {
+	const show = (event: any) => {
 		if (!visible) {
 			moveSmooth = false;
 		} else {
 			moveSmooth = true;
 		}
 
-		if (previousTarget && previousTarget.id.startsWith("navitem")) {
+		if (previousTarget && previousTarget.id == "navitem") {
 			previousTarget.blur();
 		}
 
@@ -32,11 +32,11 @@
 
 	const focusIn = (event: any) => {
 		focusing = true;
-		mouseOver(event);
+		show(event);
 	};
 
 	const focusOut = (event: any) => {
-		if (!event.relatedTarget || event.relatedTarget.id.startsWith("navitem") == false) {
+		if (!event.relatedTarget || event.relatedTarget.id !== "navitem") {
 			focusing = false;
 		}
 	};
@@ -50,18 +50,6 @@
 	};
 </script>
 
-<!--<nav>
-		<ul>
-			<li><a href="/shop">Shop</a></li>
-			<li><a href="/shop/inventory">Inventory</a></li>
-			<li>
-				<form method="POST" action="?/shop">
-					<button formaction="?/logout">Log out</button>
-				</form>
-			</li>
-		</ul>
-	</nav>-->
-
 <nav>
 	<div
 		class="highlight"
@@ -71,12 +59,12 @@
 	/>
 
 	<div class="links" on:mouseover={hover} on:mouseleave={stopHover} on:focusout={focusOut} on:focus>
-		{#each routes as route, index}
+		{#each routes as route}
 			<a
 				tabindex="0"
-				id={"navitem" + index}
+				id="navitem"
 				class:current={$page.route.id === route.link}
-				on:mouseover={mouseOver}
+				on:mouseover={show}
 				on:focusin={focusIn}
 				on:focus
 				href={route.link}

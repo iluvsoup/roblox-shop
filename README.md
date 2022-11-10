@@ -39,4 +39,10 @@ API_SECRET=
 
 If you want to test the Roblox authentication you must have an instance of Redis running on your machine
 
+If you want to test the stripe webhooks you must run the following command with the stripe CLI
+
+```
+stripe listen --forward-to=http://localhost:5173
+```
+
 A roblox project to interface with this would look something like [this](https://github.com/iluvsoup/roblox-shop/blob/main/roblox/shop.rbxl)
