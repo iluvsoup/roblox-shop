@@ -50,7 +50,5 @@ export const GET: RequestHandler = async ({ cookies }) => {
 		});
 	}
 
-	return json({
-		products: productdata
-	});
+	return json(productdata);
 };

@@ -1,9 +1,20 @@
 <script lang="ts">
 	import { errorToast } from "$lib/toast";
+	import { URL } from "$lib/constants";
 
 	let redeemableCode: string | null;
 
-	const inventoryPromise = fetch("/api/inventory");
+	const loadInventory = async (): Promise<App.Item[]> => {
+		const response = await fetch(`${URL}/api/inventory`);
+
+		if (!response.ok) {
+			errorToast("Failed to fetch inventory");
+			throw new Error();
+		}
+
+		const data = await response.json();
+		return data;
+	};
 </script>
 
 <svelte:head>
@@ -29,13 +40,13 @@
 		>
 	{:else}
 		<div class="products">
-			{#await inventoryPromise}
+			{#await loadInventory()}
 				<p>Loading</p>
-			{:then response}
-				{#await response.json()}
-					<p>Getting data</p>
-				{:then data}
-					{#each data.products as product}
+			{:then data}
+				{#if data.length === 0}
+					<h2>Nothing here yet!</h2>
+				{:else}
+					{#each data as product}
 						<div class="product">
 							<img class="image" alt="product" src={product.data.images[0]} />
 							<p class="name">{product.data.name}</p>
@@ -47,11 +58,9 @@
 							>
 						</div>
 					{/each}
-				{:catch}
-					{@html errorToast("Could not load data")}
-				{/await}
+				{/if}
 			{:catch}
-				{@html errorToast("Could not load inventory")}
+				<h2>An error occured</h2>
 			{/await}
 		</div>
 	{/if}

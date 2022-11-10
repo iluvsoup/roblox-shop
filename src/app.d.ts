@@ -17,6 +17,11 @@ declare namespace App {
 		priceObject: import("stripe").Stripe.Price;
 	}
 
+	interface Item {
+		code: string;
+		data: import("stripe").Stripe.Product;
+	}
+
 	interface Route {
 		name: string;
 		link: string;
