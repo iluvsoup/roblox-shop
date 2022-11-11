@@ -36,7 +36,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 
 	// See: https://thumbnails.roblox.com/docs#!/Avatar/get_v1_users_avatar_headshot
 	const avatar = await fetch(
-		`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${463072889}&size=48x48&format=Png&isCircular=false`
+		`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${uid}&size=48x48&format=Png&isCircular=false`
 	);
 
 	const avatar_json = await avatar.json();
