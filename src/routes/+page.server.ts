@@ -35,8 +35,8 @@ export const actions: Actions = {
 			return invalid(400, { uuid, missing: true });
 		}
 
-		console.log("a");
-		await redis.connect();
+		// console.log("a");
+		// await redis.connect();
 
 		const uid = await redis.get(uuid.toString(), (err, result) => {
 			if (err) {
@@ -47,8 +47,8 @@ export const actions: Actions = {
 			}
 		});
 
-		redis.quit();
-		console.log("disconnected a");
+		// redis.quit();
+		// console.log("disconnected a");
 
 		if (!uid) {
 			// redis.disconnect();
@@ -63,12 +63,12 @@ export const actions: Actions = {
 			throw error(500, { message: "Could not generate session token" });
 		}
 
-		console.log("b");
+		// console.log("b");
 
-		await redis.connect();
+		// await redis.connect();
 		await redis.del(uuid.toString());
-		redis.quit();
-		console.log("disconnected");
+		// redis.quit();
+		// console.log("disconnected");
 		try {
 			const doesUserExist = await prisma.user.findUnique({
 				where: { uid: uid }
