@@ -6,28 +6,37 @@
 	let hovering = false;
 	let focusing = false;
 
-	$: visible = hovering || focusing;
+	let visible: boolean;
 
 	let moveSmooth = false;
+
 	let highlightOffset: number;
 	let highlightWidth: number;
 	let previousTarget: any;
 
 	const show = (event: any) => {
-		if (!visible) {
-			moveSmooth = false;
-		} else {
+		const target = event.target.children.text;
+
+		if (visible) {
 			moveSmooth = true;
+		} else {
+			moveSmooth = false;
 		}
+
+		visible = hovering || focusing;
 
 		if (previousTarget && previousTarget.id == "navitem") {
 			previousTarget.blur();
 		}
 
-		highlightOffset = event.target.offsetLeft;
-		highlightWidth = event.target.offsetWidth;
+		highlightOffset = target.offsetLeft;
+		highlightWidth = target.offsetWidth;
 
 		previousTarget = event.target;
+	};
+
+	const hide = () => {
+		visible = hovering || focusing;
 	};
 
 	const focusIn = (event: any) => {
@@ -38,6 +47,7 @@
 	const focusOut = (event: any) => {
 		if (!event.relatedTarget || event.relatedTarget.id !== "navitem") {
 			focusing = false;
+			hide();
 		}
 	};
 
@@ -47,6 +57,7 @@
 
 	const stopHover = () => {
 		hovering = false;
+		hide();
 	};
 </script>
 
@@ -60,16 +71,10 @@
 
 	<div class="links" on:mouseover={hover} on:mouseleave={stopHover} on:focusout={focusOut} on:focus>
 		{#each routes as route}
-			<a
-				tabindex="0"
-				id="navitem"
-				class:current={$page.route.id === route.link}
-				on:mouseover={show}
-				on:focusin={focusIn}
-				on:focus
-				href={route.link}
-			>
-				{route.name}
+			<a on:mouseenter={show} on:focusin={focusIn} tabindex="0" id="navitem" href={route.link}>
+				<div class="linktext" id="text" class:current={$page.route.id === route.link}>
+					{route.name}
+				</div>
 			</a>
 		{/each}
 	</div>
@@ -101,22 +106,29 @@
 	}
 
 	a {
+		text-decoration: none;
+		padding-right: 4px;
+		padding-left: 4px;
+	}
+
+	a:hover > div,
+	a:focus > div {
+		outline: none;
+		color: #fff;
+	}
+
+	.linktext {
+		padding: 4px 12px;
 		text-align: center;
 		color: #888;
-		padding: 4px 12px;
-		text-decoration: none;
 		transition: color 0.15s ease;
 		font-size: 18px;
 	}
 
-	a.current {
+	.linktext.current {
 		color: #fff;
-	}
-
-	a:hover,
-	a:focus {
-		outline: none;
-		color: #fff;
+		border-radius: 0.5rem;
+		outline: solid 2px #333;
 	}
 
 	.highlight {

@@ -16,10 +16,6 @@ Redis
 
 CSS
 
-Maybe additional security
-
-Deployment, setup docker etc.
-
 # Developing
 
 `(p)npm run dev` to run it locally on port 5173
