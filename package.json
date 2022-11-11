@@ -18,7 +18,7 @@
 		"@prisma/client": "^4.5.0",
 		"@stripe/stripe-js": "^1.41.0",
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/adapter-vercel": "1.0.0-next.81",
+		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "next",
 		"@types/ioredis": "^4.28.10",
 		"@types/jsonwebtoken": "^8.5.9",
