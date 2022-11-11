@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 export const actions: Actions = {
 	default: async ({ cookies, request }) => {
-		console.log("action");
+		// console.log("action");
 		const data = await request.formData();
 		const uuid = data.get("uuid");
 
@@ -36,7 +36,7 @@ export const actions: Actions = {
 		}
 
 		// console.log("a");
-		// await redis.connect();
+		await redis.connect();
 
 		const uid = await redis.get(uuid.toString(), (err, result) => {
 			if (err) {
@@ -47,7 +47,7 @@ export const actions: Actions = {
 			}
 		});
 
-		// redis.quit();
+		redis.quit();
 		// console.log("disconnected a");
 
 		if (!uid) {
@@ -65,9 +65,9 @@ export const actions: Actions = {
 
 		// console.log("b");
 
-		// await redis.connect();
+		await redis.connect();
 		await redis.del(uuid.toString());
-		// redis.quit();
+		redis.quit();
 		// console.log("disconnected");
 		try {
 			const doesUserExist = await prisma.user.findUnique({
