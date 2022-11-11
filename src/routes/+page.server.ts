@@ -36,18 +36,18 @@ export const actions: Actions = {
 		}
 
 		// console.log("a");
-		await redis.connect();
+		// await redis.connect();
 
 		const uid = await redis.get(uuid.toString(), (err, result) => {
 			if (err) {
-				redis.disconnect();
+				// redis.disconnect();
 				throw error(500, err);
 			} else {
 				return result;
 			}
 		});
 
-		redis.quit();
+		// redis.quit();
 		// console.log("disconnected a");
 
 		if (!uid) {
@@ -65,9 +65,9 @@ export const actions: Actions = {
 
 		// console.log("b");
 
-		await redis.connect();
+		// await redis.connect();
 		await redis.del(uuid.toString());
-		redis.quit();
+		// redis.quit();
 		// console.log("disconnected");
 		try {
 			const doesUserExist = await prisma.user.findUnique({
