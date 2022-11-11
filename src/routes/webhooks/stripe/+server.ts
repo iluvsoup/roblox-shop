@@ -2,8 +2,6 @@ import { prisma } from "$lib/server/prisma";
 import { stripe } from "$lib/server/stripe";
 import { error } from "@sveltejs/kit";
 
-import { WEBHOOK_SECRET } from "$env/static/private";
-
 import type { RequestHandler } from "./$types";
 import type Stripe from "stripe";
 
@@ -14,7 +12,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			event = stripe.webhooks.constructEvent(
 				await request.text(),
 				request.headers.get("stripe-signature")!,
-				WEBHOOK_SECRET
+				process.env.WEBHOOK_SECRET!
 			);
 		} catch (err) {
 			throw error(400, { message: "Webhook signature verification failed" });
