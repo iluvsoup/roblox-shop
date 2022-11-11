@@ -37,22 +37,22 @@ export const actions: Actions = {
 		}
 
 		// console.log("a");
-		await redis.connect();
+		// await redis.connect();
 
 		const uid = await redis.get(uuid.toString(), (err, result) => {
 			if (err) {
-				redis.quit();
+				// redis.quit();
 				throw error(500, err);
 			} else {
 				return result;
 			}
 		});
 
-		redis.quit();
+		// redis.quit();
 		// console.log("disconnected a");
 
 		if (!uid) {
-			redis.quit();
+			// redis.quit();
 			return invalid(400, { uuid, incorrect: true });
 		}
 
@@ -60,15 +60,15 @@ export const actions: Actions = {
 		const token = jwt.sign({ uid: uid }, process.env.JWT_SECRET!, { expiresIn: TOKEN_DURATION });
 
 		if (!token) {
-			redis.quit();
+			// redis.quit();
 			throw error(500, { message: "Could not generate session token" });
 		}
 
 		// console.log("b");
 
-		await redis.connect();
+		// await redis.connect();
 		await redis.del(uuid.toString());
-		redis.quit();
+		// redis.quit();
 		// console.log("disconnected");
 		try {
 			const doesUserExist = await prisma.user.findUnique({
