@@ -1,6 +1,7 @@
 import { invalid, error, redirect } from "@sveltejs/kit";
 import { redis } from "$lib/server/redis";
 import { prisma } from "$lib/server/prisma";
+
 import jwt from "jsonwebtoken";
 
 import { TOKEN_DURATION } from "$lib/constants";
