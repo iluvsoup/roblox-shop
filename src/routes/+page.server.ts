@@ -27,6 +27,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 export const actions: Actions = {
 	default: async ({ cookies, request }) => {
+		console.log("action");
 		const data = await request.formData();
 		const uuid = data.get("uuid");
 
@@ -34,7 +35,9 @@ export const actions: Actions = {
 			return invalid(400, { uuid, missing: true });
 		}
 
+		console.log("a");
 		await redis.connect();
+
 		const uid = await redis.get(uuid.toString(), (err, result) => {
 			if (err) {
 				redis.disconnect();
@@ -43,10 +46,12 @@ export const actions: Actions = {
 				return result;
 			}
 		});
-		// redis.disconnect()
+
+		redis.quit();
+		console.log("disconnected a");
 
 		if (!uid) {
-			redis.disconnect();
+			// redis.disconnect();
 			return invalid(400, { uuid, incorrect: true });
 		}
 
@@ -54,14 +59,16 @@ export const actions: Actions = {
 		const token = jwt.sign({ uid: uid }, process.env.JWT_SECRET!, { expiresIn: TOKEN_DURATION });
 
 		if (!token) {
-			redis.disconnect();
+			// redis.disconnect();
 			throw error(500, { message: "Could not generate session token" });
 		}
 
-		// await redis.connect()
-		await redis.del(uuid.toString());
-		redis.disconnect();
+		console.log("b");
 
+		await redis.connect();
+		await redis.del(uuid.toString());
+		redis.quit();
+		console.log("disconnected");
 		try {
 			const doesUserExist = await prisma.user.findUnique({
 				where: { uid: uid }
