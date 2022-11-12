@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Product from "./Product.svelte";
+	import ErrorMessage from "$lib/components/ErrorMessage.svelte";
 	import { errorToast } from "$lib/toast";
 	import { URL } from "$lib/constants";
 
@@ -12,7 +13,7 @@
 
 		if (!response.ok) {
 			errorToast("Failed to fetch products");
-			throw new Error();
+			throw new Error(`${response.status.toString()}: ${response.statusText}`);
 		}
 
 		const data = await response.json();
@@ -39,8 +40,8 @@
 					<Product data={product} uid={data.uid} />
 				{/each}
 			{/if}
-		{:catch}
-			<h2>An error occured!</h2>
+		{:catch err}
+			<ErrorMessage message={err.message} />
 		{/await}
 	</div>
 </template>
@@ -58,8 +59,4 @@
 		margin-top: 0.5rem;
 		gap: 0.5rem;
 	}
-
-	/* .red {
-		color: red;
-	} */
 </style>

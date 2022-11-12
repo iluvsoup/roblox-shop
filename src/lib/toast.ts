@@ -9,7 +9,7 @@ export const errorToast = (msg: string) => {
 			"--toastBarHeight": "3px",
 			"--toastBorder": "1px solid rgb(225, 29, 72)",
 			"--toastBarBackground": "rgb(225, 29, 72)",
-			"--toastBackground": "rgb(74 18 18)",
+			"--toastBackground": "rgba(74, 18, 18, 0.5)",
 			"--toastBorderRadius": "0.5rem"
 		}
 	});

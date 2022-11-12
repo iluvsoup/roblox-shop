@@ -63,7 +63,7 @@
 	}
 
 	main {
-		padding: 8px;
+		padding: 1rem;
 	}
 
 	header {
