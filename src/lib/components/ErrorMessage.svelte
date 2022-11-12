@@ -12,7 +12,7 @@
 		color: #888;
 		padding: 1rem;
 		border-radius: 0.5rem;
-		border: solid 2px rgb(225, 29, 72);
+		border: solid 1px rgb(225, 29, 72);
 		background: rgba(74, 18, 18, 0.5);
 	}
 

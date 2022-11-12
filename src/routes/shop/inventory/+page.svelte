@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ErrorMessage from "$lib/components/ErrorMessage.svelte";
 	import { errorToast } from "$lib/toast";
 	import { URL } from "$lib/constants";
 
@@ -9,7 +10,7 @@
 
 		if (!response.ok) {
 			errorToast("Failed to fetch inventory");
-			throw new Error();
+			throw new Error(`${response.status}: ${response.statusText}`);
 		}
 
 		const data = await response.json();
@@ -59,8 +60,8 @@
 						</div>
 					{/each}
 				{/if}
-			{:catch}
-				<h2>An error occured</h2>
+			{:catch err}
+				<ErrorMessage message={err.message} />
 			{/await}
 		</div>
 	{/if}
