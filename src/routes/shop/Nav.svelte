@@ -3,16 +3,11 @@
 
 	export let routes: App.Route[];
 
-	let hovering = false;
-	let focusing = false;
-
 	let visible: boolean;
-
 	let moveSmooth = false;
 
 	let highlightOffset: number;
 	let highlightWidth: number;
-	let previousTarget: any;
 
 	const show = (event: any) => {
 		const target = event.target.children.text;
@@ -23,42 +18,14 @@
 			moveSmooth = false;
 		}
 
-		visible = hovering || focusing;
-
-		if (previousTarget && previousTarget.id == "navitem") {
-			previousTarget.blur();
-		}
+		visible = true;
 
 		highlightOffset = target.offsetLeft;
 		highlightWidth = target.offsetWidth;
-
-		previousTarget = event.target;
 	};
 
-	const hide = () => {
-		visible = hovering || focusing;
-	};
-
-	const focusIn = (event: any) => {
-		focusing = true;
-		show(event);
-	};
-
-	const focusOut = (event: any) => {
-		if (!event.relatedTarget || event.relatedTarget.id !== "navitem") {
-			focusing = false;
-			hide();
-		}
-	};
-
-	const hover = () => {
-		hovering = true;
-	};
-
-	const stopHover = () => {
-		hovering = false;
-		hide();
-	};
+	const hover = () => (visible = true);
+	const stopHover = () => (visible = false);
 </script>
 
 <nav>
@@ -69,9 +36,9 @@
 		style="left: {highlightOffset}px; width: {highlightWidth}px"
 	/>
 
-	<div class="links" on:mouseover={hover} on:mouseleave={stopHover} on:focusout={focusOut} on:focus>
+	<div class="links" on:mouseover={hover} on:mouseleave={stopHover} on:focus>
 		{#each routes as route}
-			<a on:mouseenter={show} on:focusin={focusIn} tabindex="0" id="navitem" href={route.link}>
+			<a on:mouseenter={show} tabindex="0" href={route.link}>
 				<div class="linktext" id="text" class:current={$page.route.id === route.link}>
 					{route.name}
 				</div>
@@ -113,7 +80,6 @@
 
 	a:hover > div,
 	a:focus > div {
-		outline: none;
 		color: #fff;
 	}
 
@@ -156,9 +122,10 @@
 	}
 
 	button {
-		width: 5em;
 		height: 2rem;
 		border-radius: 0.5rem;
+		padding-left: 10px;
+		padding-right: 10px;
 		border: none;
 		background-color: var(--secondary);
 		transition: transform 0.5s ease, box-shadow, 0.5s ease;
