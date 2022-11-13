@@ -20,8 +20,12 @@
 
 		visible = true;
 
-		highlightOffset = target.offsetLeft;
-		highlightWidth = target.offsetWidth;
+		const offset = target.offsetLeft;
+		const width = target.offsetWidth;
+
+		// garbage
+		highlightOffset = offset - 0.5;
+		highlightWidth = width + 1;
 	};
 
 	const stopHover = () => {
@@ -34,13 +38,18 @@
 		class="highlight"
 		class:visible
 		class:moveSmooth
+		aria-hidden="true"
 		style="left: {highlightOffset}px; width: {highlightWidth}px"
 	/>
 
 	<div class="links" on:mouseleave={stopHover} on:focus>
 		{#each routes as route}
 			<a on:mouseenter={show} tabindex="0" href={route.link}>
-				<div class="linktext" id="text" class:current={$page.route.id === route.link}>
+				<div
+					class="linktext"
+					id="text"
+					class:current={$page.route.id === route.link}
+				>
 					{route.name}
 				</div>
 			</a>
@@ -77,6 +86,7 @@
 		text-decoration: none;
 		padding-right: 4px;
 		padding-left: 4px;
+		display: block;
 	}
 
 	a:hover > div,
@@ -99,6 +109,7 @@
 	}
 
 	.highlight {
+		contain: strict;
 		border-radius: 0.5rem;
 		z-index: 1;
 		background-color: #333;
