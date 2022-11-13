@@ -49,14 +49,14 @@
 <style>
 	h1 {
 		margin-top: 0;
-		margin-bottom: 0;
+		margin-bottom: 1rem;
 		color: #fff;
 	}
 
+	/* TODO: CHANGE TO RESPONSIVE GRID */
 	.products {
 		display: flex;
 		flex-wrap: wrap;
-		margin-top: 0.5rem;
 		gap: 0.5rem;
 	}
 </style>
