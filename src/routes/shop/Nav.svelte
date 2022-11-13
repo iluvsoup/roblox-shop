@@ -24,8 +24,9 @@
 		highlightWidth = target.offsetWidth;
 	};
 
-	const hover = () => (visible = true);
-	const stopHover = () => (visible = false);
+	const stopHover = () => {
+		visible = false;
+	};
 </script>
 
 <nav>
@@ -36,7 +37,7 @@
 		style="left: {highlightOffset}px; width: {highlightWidth}px"
 	/>
 
-	<div class="links" on:mouseover={hover} on:mouseleave={stopHover} on:focus>
+	<div class="links" on:mouseleave={stopHover} on:focus>
 		{#each routes as route}
 			<a on:mouseenter={show} tabindex="0" href={route.link}>
 				<div class="linktext" id="text" class:current={$page.route.id === route.link}>
