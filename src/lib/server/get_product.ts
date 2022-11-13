@@ -25,6 +25,18 @@ export const getProduct = async (product: Stripe.Product) => {
 		};
 	}
 
+	if (price.recurring) {
+		return {
+			error: "Subscriptions are not supported"
+		};
+	}
+
+	if (price.billing_scheme === "tiered") {
+		return {
+			error: "Tiered pricing plans are not supported"
+		};
+	}
+
 	const priceString = format(iso, price.billing_scheme, price.unit_amount);
 
 	return {

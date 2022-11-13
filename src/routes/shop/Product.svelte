@@ -34,33 +34,21 @@
 			<img class="image" src={data.imageurl} alt="Product" />
 		</a>
 
-		<p class="name">{data.name}</p>
+		<div class="content">
+			<p class="name">{data.name}</p>
+			<p class="pricetext">{price}</p>
 
-		{#if priceObject.type == "recurring"}
-			<p class="green pricetext">
-				{price} every
-				{#if priceObject.recurring?.interval_count == 1}
-					{priceObject.recurring?.interval}
-				{:else}
-					{priceObject.recurring?.interval_count} {priceObject.recurring?.interval}s
-				{/if}
-			</p>
-		{:else}
-			<p class="green pricetext">{price}</p>
-		{/if}
-
-		{#if redirecting == true}
-			<button class="buy">Redirecting...</button>
-		{:else}
-			<button class="buy" on:click={checkout}>BUY NOW!!!</button>
-		{/if}
+			{#if redirecting == true}
+				<button class="buy">Redirecting...</button>
+			{:else}
+				<button class="buy" on:click={checkout}>BUY NOW!!!</button>
+			{/if}
+		</div>
 	</div>
 </template>
 
 <style>
 	.container {
-		width: 15rem;
-		height: 20rem;
 		background-color: #eee;
 		border-radius: 0.5rem;
 		transition: transform, box-shadow;
@@ -74,27 +62,33 @@
 		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
 	}
 
+	.content {
+		padding-top: 1rem;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		padding-bottom: 1.5rem;
+	}
+
 	.name {
 		margin-bottom: 0;
+		margin-top: 0;
 		text-align: center;
+		font-size: 24px;
+		font-weight: 300;
 	}
 
 	.image {
 		width: 100%;
-		height: 50%;
 		border-top-left-radius: 0.5rem;
 		border-top-right-radius: 0.5rem;
 		cursor: pointer;
-	}
-
-	.green {
-		color: green;
 	}
 
 	.pricetext {
 		margin-top: 0.5rem;
 		margin-bottom: 0.5rem;
 		text-align: center;
+		font-weight: 600;
 		font-size: 1.5rem;
 	}
 

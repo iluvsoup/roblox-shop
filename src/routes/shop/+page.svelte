@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Product from "./Product.svelte";
 	import ErrorMessage from "$lib/components/ErrorMessage.svelte";
+
 	import { errorToast } from "$lib/toast";
 	import { URL } from "$lib/constants";
 
@@ -29,6 +30,8 @@
 <template>
 	<h1>Products</h1>
 
+	<div class="bar" />
+
 	<div class="products">
 		{#await loadProducts()}
 			<p>Loading products</p>
@@ -37,7 +40,9 @@
 				<h2>Nothing here yet!</h2>
 			{:else}
 				{#each products as product}
-					<Product data={product} uid={data.uid} />
+					<div class="wrapper">
+						<Product data={product} uid={data.uid} />
+					</div>
 				{/each}
 			{/if}
 		{:catch err}
@@ -48,15 +53,56 @@
 
 <style>
 	h1 {
-		margin-top: 0;
+		margin-top: 2rem;
 		margin-bottom: 1rem;
 		color: #fff;
+		text-align: center;
 	}
 
-	/* TODO: CHANGE TO RESPONSIVE GRID */
+	.bar {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		height: 4px;
+		width: 8rem;
+		background-color: #333;
+		border-radius: 4px;
+	}
+
 	.products {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
+		display: grid;
+		gap: 1.5rem;
+		grid-auto-columns: max-content;
+		justify-items: center;
+		margin-left: auto;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		margin-right: auto;
+		margin-bottom: 2rem;
+	}
+
+	.wrapper {
+		width: 100%;
+		margin-top: 3rem;
+	}
+
+	@media screen and (min-width: 550px) {
+		.products {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			max-width: 550px;
+		}
+	}
+
+	@media screen and (min-width: 800px) {
+		.products {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			max-width: 1100px;
+		}
+	}
+
+	@media screen and (min-width: 1100px) {
+		.products {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			max-width: 1300px;
+		}
 	}
 </style>

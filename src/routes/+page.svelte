@@ -49,9 +49,7 @@
 	}
 
 	if (form?.incorrect) {
-		errorToast(
-			"Invalid verification code! It might be expired, try refreshing it in Roblox!"
-		);
+		errorToast("Invalid verification code! It might be expired, try refreshing it in Roblox!");
 	}
 
 	if (form?.error) {
@@ -78,6 +76,10 @@
 			</form>
 		</div>
 	</main>
+
+	<footer>
+		<a class="footer" href="https://github.com/iluvsoup">Made by iluvsoup</a>
+	</footer>
 </template>
 
 <style>
@@ -152,5 +154,42 @@
 		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
 		background-color: #fff;
 		outline: none;
+	}
+
+	footer {
+		background: rgba(0, 0, 0, 0.5);
+		position: fixed;
+		width: 100vw;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 2rem;
+	}
+
+	.footer {
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		color: #fff;
+		text-decoration: none;
+		display: inline;
+	}
+
+	/* weirdest css I've written in my life */
+	.footer::after {
+		content: "";
+		height: 2px;
+		width: 0%;
+		transform: translate(-50%, 0);
+		left: 50%;
+		display: block;
+		position: absolute;
+		background: #fff;
+		transition: width 0.25s ease;
+	}
+
+	.footer:hover::after {
+		width: 9rem;
 	}
 </style>

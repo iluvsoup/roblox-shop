@@ -1,5 +1,4 @@
 import Redis from "ioredis";
-import { errorToast } from "$lib/toast";
 
 const url = process.env.NODE_ENV == "production" ? process.env.REDIS_URL! : "127.0.0.1:6379";
 
