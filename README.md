@@ -28,10 +28,13 @@ PUBLIC_STRIPE_KEY=
 JWT_SECRET=
 WEBHOOK_SECRET=
 DATABASE_URL=
+REDIS_URL=
 API_SECRET=
 ```
 
 `API_SECRET` is for authenticating roblox to server communication
+
+`REDIS_URL` is unnecessary if you are only going to be running this in dev
 
 If you want to test the Roblox authentication you must have an instance of Redis running on your machine
 

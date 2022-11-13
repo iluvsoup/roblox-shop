@@ -49,7 +49,13 @@
 	}
 
 	if (form?.incorrect) {
-		errorToast("Invalid verification code! It might be expired, try refreshing it in Roblox!");
+		errorToast(
+			"Invalid verification code! It might be expired, try refreshing it in Roblox!"
+		);
+	}
+
+	if (form?.error) {
+		errorToast(form.error);
 	}
 </script>
 
