@@ -1,5 +1,6 @@
 import { stripe } from "$lib/server/stripe";
 import { prisma } from "$lib/server/prisma";
+import { error } from "@sveltejs/kit";
 
 export const getOrCreateCustomer = async (uid: string) => {
 	const user = await prisma.user.findUnique({
@@ -7,7 +8,6 @@ export const getOrCreateCustomer = async (uid: string) => {
 	});
 
 	if (user?.stripeCustomerId) {
-		// return stripe.customers.retrieve(user.stripeCustomerId);
 		return user.stripeCustomerId;
 	} else {
 		const customer = await stripe.customers.create({

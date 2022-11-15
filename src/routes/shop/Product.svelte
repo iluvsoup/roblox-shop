@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import { error } from "@sveltejs/kit";
 
 	export let data: App.Product;
 	export let uid: string;
@@ -23,8 +24,10 @@
 			})
 		});
 
-		const url = await res.text();
-		goto(url);
+		if (res.ok) {
+			const url = await res.text();
+			goto(url);
+		}
 	}
 </script>
 
@@ -41,7 +44,7 @@
 			{#if redirecting == true}
 				<button class="buy">Redirecting...</button>
 			{:else}
-				<button class="buy" on:click={checkout}>BUY NOW!!!</button>
+				<button class="buy" on:click={checkout}>BUY NOW</button>
 			{/if}
 		</div>
 	</div>
@@ -75,7 +78,7 @@
 		margin-top: 0;
 		text-align: center;
 		font-size: 24px;
-		font-weight: 300;
+		font-weight: 400;
 	}
 
 	.image {
@@ -87,10 +90,10 @@
 
 	.pricetext {
 		margin-top: 0.5rem;
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.75rem;
 		text-align: center;
 		font-weight: 600;
-		font-size: 28px;
+		font-size: 30px;
 	}
 
 	.buy {
@@ -104,7 +107,7 @@
 		font-weight: 700;
 		font-size: 18px;
 		cursor: pointer;
-		transition: transform 0.5s ease, box-shadow, 0.5s ease;
+		transition: box-shadow, 0.5s ease;
 		font-family: Poppins;
 		padding-left: 1rem;
 		padding-right: 1rem;
@@ -115,7 +118,7 @@
 	.buy:hover,
 	.buy:focus {
 		outline: none;
-		transform: translateY(-0.125rem);
+		/* transform: translateY(-0.125rem); */
 		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
 		background-color: #fff;
 		border: 1px solid var(--secondary);
