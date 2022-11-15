@@ -29,6 +29,7 @@
 	:root {
 		--primary: rgb(27, 27, 27);
 		--primary-dark: rgb(15, 15, 15);
+		--primary-light: rgb(39, 39, 39);
 		--secondary: rgb(0, 85, 255);
 		--secondary-alternate: rgb(0, 47, 255);
 		font-family: Poppins;

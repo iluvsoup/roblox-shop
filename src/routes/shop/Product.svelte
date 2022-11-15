@@ -49,11 +49,12 @@
 
 <style>
 	.container {
-		background-color: #eee;
+		background-color: var(--primary-light);
 		border-radius: 0.5rem;
 		transition: transform, box-shadow;
 		transition-duration: 0.5s;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		color: #fff;
 	}
 
 	.container:hover {
@@ -89,12 +90,35 @@
 		margin-bottom: 0.5rem;
 		text-align: center;
 		font-weight: 600;
-		font-size: 1.5rem;
+		font-size: 28px;
 	}
 
 	.buy {
 		margin-left: auto;
 		margin-right: auto;
 		display: block;
+		background-color: var(--secondary);
+		border: 1px solid var(--secondary);
+		border-radius: 0.5rem;
+		color: #fff;
+		font-weight: 700;
+		font-size: 18px;
+		cursor: pointer;
+		transition: transform 0.5s ease, box-shadow, 0.5s ease;
+		font-family: Poppins;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+
+	.buy:hover,
+	.buy:focus {
+		outline: none;
+		transform: translateY(-0.125rem);
+		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+		background-color: #fff;
+		border: 1px solid var(--secondary);
+		color: var(--secondary);
 	}
 </style>

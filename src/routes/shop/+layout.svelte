@@ -42,6 +42,12 @@
 		background-color: var(--primary-dark);
 	}
 
+	header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+
 	.skip {
 		position: fixed;
 		transform: translateY(-100%);

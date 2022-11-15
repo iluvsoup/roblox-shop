@@ -45,11 +45,7 @@
 	<div class="links" on:mouseleave={stopHover} on:focus>
 		{#each routes as route}
 			<a on:mouseenter={show} tabindex="0" href={route.link}>
-				<div
-					class="linktext"
-					id="text"
-					class:current={$page.route.id === route.link}
-				>
+				<div class="linktext" id="text" class:current={$page.route.id === route.link}>
 					{route.name}
 				</div>
 			</a>
@@ -134,11 +130,11 @@
 	}
 
 	button {
-		height: 2rem;
 		border-radius: 0.5rem;
 		padding-left: 10px;
 		padding-right: 10px;
-		border: none;
+		padding-top: 5px;
+		padding-bottom: 5px;
 		background-color: var(--secondary);
 		transition: transform 0.5s ease, box-shadow, 0.5s ease;
 		border: 1px solid var(--secondary);
