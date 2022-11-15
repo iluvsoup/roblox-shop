@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Product from "./Product.svelte";
+	import Spinner from "$lib/components/Spinner.svelte";
 	import ErrorMessage from "$lib/components/ErrorMessage.svelte";
 
 	import { errorToast } from "$lib/toast";
@@ -32,23 +33,25 @@
 
 	<div class="bar" />
 
-	<div class="products">
-		{#await loadProducts()}
-			<p>Loading products</p>
-		{:then products}
-			{#if products.length === 0}
-				<h2>Nothing here yet!</h2>
-			{:else}
+	{#await loadProducts()}
+		<div class="loading">
+			<Spinner />
+		</div>
+	{:then products}
+		{#if products.length === 0}
+			<h2>Nothing here yet!</h2>
+		{:else}
+			<div class="products">
 				{#each products as product}
 					<div class="wrapper">
 						<Product data={product} uid={data.uid} />
 					</div>
 				{/each}
-			{/if}
-		{:catch err}
-			<ErrorMessage message={err.message} />
-		{/await}
-	</div>
+			</div>
+		{/if}
+	{:catch err}
+		<ErrorMessage message={err.message} />
+	{/await}
 </template>
 
 <style>
@@ -67,6 +70,13 @@
 		width: 8rem;
 		background-color: #333;
 		border-radius: 4px;
+	}
+
+	.loading {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 3rem;
 	}
 
 	.products {
