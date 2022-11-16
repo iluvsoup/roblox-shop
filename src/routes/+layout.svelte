@@ -32,6 +32,8 @@
 		--primary-light: rgb(39, 39, 39);
 		--secondary: rgb(0, 85, 255);
 		--secondary-alternate: rgb(0, 47, 255);
+		--secondary-bright: rgb(103, 154, 255);
+		--secondary-light: rgb(67, 130, 255);
 		font-family: Poppins;
 	}
 

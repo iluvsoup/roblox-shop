@@ -60,6 +60,7 @@
 	h1 {
 		margin-top: 2rem;
 		margin-bottom: 1rem;
+		font-size: 48px;
 		color: #fff;
 		text-align: center;
 	}
@@ -100,6 +101,7 @@
 
 	.wrapper {
 		width: 100%;
+		max-width: 18rem;
 		margin-top: 3rem;
 	}
 

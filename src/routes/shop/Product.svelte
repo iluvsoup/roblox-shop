@@ -106,19 +106,20 @@
 	}
 
 	.pricesymbol {
-		user-select: none;
+		/* user-select: none; */
 		display: inline;
-		font-weight: 600;
 		margin: 0;
 		padding: 0;
+		font-weight: 500;
+		font-size: 22px;
 	}
 
 	.pricesymbol.left {
-		margin-right: 4px;
+		margin-right: 2px;
 	}
 
 	.pricesymbol.right {
-		margin-left: 4px;
+		margin-left: 2px;
 	}
 
 	.pricetext {
@@ -127,7 +128,11 @@
 		padding: 0;
 		text-align: center;
 		font-weight: 600;
-		font-size: 30px;
+		font-size: 36px;
+		background-image: linear-gradient(var(--secondary-light), var(--secondary-bright));
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: #0000;
 	}
 
 	.buy {
