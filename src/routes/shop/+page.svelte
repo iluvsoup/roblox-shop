@@ -122,7 +122,7 @@
 	@media screen and (min-width: 1100px) {
 		.products {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
-			max-width: 1300px;
+			max-width: 1230px;
 		}
 	}
 </style>
