@@ -30,46 +30,44 @@
 
 	<div class="bar" />
 
-	{#if redeemableCode}
-		<h1>{redeemableCode}</h1>
-		<p>Enter this code inside roblox to redeem your purchase, make sure NOT to share it with anybody else</p>
+	{#await loadInventory()}
+		<div class="loading">
+			<Spinner />
+		</div>
+	{:then data}
+		{#if data.length === 0}
+			<h2>Nothing here yet!</h2>
+		{:else if redeemableCode}
+			<h1>{redeemableCode}</h1>
+			<p>Enter this code inside roblox to redeem your purchase, make sure NOT to share it with anybody else</p>
 
-		<button
-			class="hide"
-			on:click={() => {
-				redeemableCode = null;
-			}}>hide code</button
-		>
-	{:else}
-		{#await loadInventory()}
-			<div class="loading">
-				<Spinner />
+			<button
+				class="hide"
+				on:click={() => {
+					redeemableCode = null;
+				}}>hide code</button
+			>
+		{:else}
+			<div class="products">
+				{#each data as product}
+					<div class="product">
+						<img class="image" alt="product" src={product.data.images[0]} />
+						<p class="name">{product.data.name}</p>
+						<button
+							class="redeem"
+							on:click={() => {
+								redeemableCode = product.code;
+							}}>REDEEM</button
+						>
+					</div>
+				{/each}
 			</div>
-		{:then data}
-			{#if data.length === 0}
-				<h2>Nothing here yet!</h2>
-			{:else}
-				<div class="products">
-					{#each data as product}
-						<div class="product">
-							<img class="image" alt="product" src={product.data.images[0]} />
-							<p class="name">{product.data.name}</p>
-							<button
-								class="redeem"
-								on:click={() => {
-									redeemableCode = product.code;
-								}}>REDEEM</button
-							>
-						</div>
-					{/each}
-				</div>
-			{/if}
-		{:catch err}
-			<div class="error">
-				<ErrorMessage message={err.message} />
-			</div>
-		{/await}
-	{/if}
+		{/if}
+	{:catch err}
+		<div class="error">
+			<ErrorMessage message={err.message} />
+		</div>
+	{/await}
 </template>
 
 <style>
