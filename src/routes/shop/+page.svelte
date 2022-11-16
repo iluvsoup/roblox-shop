@@ -65,6 +65,12 @@
 		text-align: center;
 	}
 
+	h2 {
+		color: #888;
+		text-align: center;
+		font-weight: 400;
+	}
+
 	.bar {
 		display: block;
 		margin-left: auto;
