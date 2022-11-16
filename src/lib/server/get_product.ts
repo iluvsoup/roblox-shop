@@ -4,47 +4,26 @@ import { format } from "$lib/format_currency";
 import type Stripe from "stripe";
 
 export const getProduct = async (product: Stripe.Product) => {
-	if (!product.default_price) {
-		return {
-			error: "Could not load price"
-		};
+	if (!product.default_price || !product.active) {
+		return;
 	}
 
-	if (!product.active) {
-		return {
-			error: "Archived product"
-		};
+	const stripePrice = await stripe.prices.retrieve(product.default_price.toString());
+	const iso = stripePrice.currency.toUpperCase();
+
+	if (!stripePrice.unit_amount || stripePrice.recurring || stripePrice.billing_scheme == "tiered") {
+		return;
 	}
 
-	const price = await stripe.prices.retrieve(product.default_price.toString());
-	const iso = price.currency.toUpperCase();
-
-	if (!price.unit_amount) {
-		return {
-			error: "Could not load currency amount"
-		};
-	}
-
-	if (price.recurring) {
-		return {
-			error: "Subscriptions are not supported"
-		};
-	}
-
-	if (price.billing_scheme === "tiered") {
-		return {
-			error: "Tiered pricing plans are not supported"
-		};
-	}
-
-	const priceString = format(iso, price.billing_scheme, price.unit_amount);
-
-	return {
+	const price = format(iso, stripePrice.unit_amount);
+	const data: App.Product = {
 		id: product.id,
 		imageurl: product.images[0],
-		description: product.description,
+		description: product.description || "No description available",
 		name: product.name,
-		price: priceString,
-		priceObject: price
+		price: price,
+		priceObject: stripePrice
 	};
+
+	return data;
 };

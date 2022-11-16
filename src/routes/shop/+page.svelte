@@ -50,7 +50,9 @@
 			</div>
 		{/if}
 	{:catch err}
-		<ErrorMessage message={err.message} />
+		<div class="error">
+			<ErrorMessage message={err.message} />
+		</div>
 	{/await}
 </template>
 
@@ -88,6 +90,12 @@
 		grid-template-columns: repeat(1, minmax(0, 1fr));
 		margin-right: auto;
 		margin-bottom: 2rem;
+	}
+
+	.error {
+		margin-top: 2rem;
+		display: flex;
+		justify-content: center;
 	}
 
 	.wrapper {

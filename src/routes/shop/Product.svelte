@@ -39,7 +39,16 @@
 
 		<div class="content">
 			<p class="name">{data.name}</p>
-			<p class="pricetext">{price}</p>
+
+			<div class="price">
+				{#if price.symbolOnLeft}
+					<p class="pricesymbol left">{price.symbol}</p>
+					<p class="pricetext">{price.number}</p>
+				{:else}
+					<p class="pricetext">{price.number}</p>
+					<p class="pricesymbol right">{price.symbol}</p>
+				{/if}
+			</div>
 
 			{#if redirecting == true}
 				<button class="buy">Redirecting...</button>
@@ -88,9 +97,34 @@
 		cursor: pointer;
 	}
 
-	.pricetext {
+	.price {
+		display: flex;
+		justify-content: center;
+		align-items: baseline;
 		margin-top: 0.5rem;
 		margin-bottom: 0.75rem;
+	}
+
+	.pricesymbol {
+		user-select: none;
+		display: inline;
+		font-weight: 600;
+		margin: 0;
+		padding: 0;
+	}
+
+	.pricesymbol.left {
+		margin-right: 4px;
+	}
+
+	.pricesymbol.right {
+		margin-left: 4px;
+	}
+
+	.pricetext {
+		display: inline;
+		margin: 0;
+		padding: 0;
 		text-align: center;
 		font-weight: 600;
 		font-size: 30px;

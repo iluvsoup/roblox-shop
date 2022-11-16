@@ -13,7 +13,7 @@ declare namespace App {
 		imageurl: string;
 		description: string;
 		name: string;
-		price: string | undefined;
+		price: { number: string; symbol: string; symbolOnLeft: boolean };
 		priceObject: import("stripe").Stripe.Price;
 	}
 

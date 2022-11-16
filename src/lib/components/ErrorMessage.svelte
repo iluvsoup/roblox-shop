@@ -14,6 +14,7 @@
 		border-radius: 0.5rem;
 		border: solid 1px rgb(225, 29, 72);
 		background: rgba(74, 18, 18, 0.5);
+		display: inline-block;
 	}
 
 	.errormsg h2 {

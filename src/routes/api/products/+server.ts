@@ -11,10 +11,8 @@ export const GET: RequestHandler = async () => {
 	for (const product of products.data) {
 		const data = await getProduct(product);
 
-		if (data.error) {
-			// console.warn("[!]: " + data.error);
-		} else {
-			productdata.push(data as App.Product);
+		if (data) {
+			productdata.push(data);
 		}
 	}
 
