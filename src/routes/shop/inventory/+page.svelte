@@ -141,9 +141,9 @@
 	}
 
 	.product {
+		margin-top: 3rem;
 		width: 15rem;
 		background-color: #eee;
-		margin-right: 10px;
 		height: 15rem;
 		/* cursor: pointer; */
 	}
@@ -168,5 +168,6 @@
 		margin-right: auto;
 		width: 10rem;
 		height: 3rem;
+		cursor: pointer;
 	}
 </style>
