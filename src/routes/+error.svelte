@@ -11,23 +11,31 @@
 </template>
 
 <style>
-	.wrapper {
-		max-width: 1000px;
-		margin-left: auto;
-		margin-right: auto;
+	:global(body) {
+		background-color: #000;
 	}
 
 	img {
 		width: 100%;
+		max-width: 900px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	h1,
 	a {
+		margin-top: 0;
+		color: #fff;
 		display: block;
 		text-align: center;
 	}
 
 	h1 {
 		margin-bottom: 0.5rem;
+	}
+
+	a {
+		margin-bottom: 2rem;
 	}
 </style>
