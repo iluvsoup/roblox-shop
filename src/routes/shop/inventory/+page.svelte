@@ -6,15 +6,14 @@
 
 	import { fade } from "svelte/transition";
 
-	import { faXmark } from "@fortawesome/free-solid-svg-icons";
-
+	import { getUrl } from "$lib/constants";
 	import { errorToast } from "$lib/toast";
-	// import { URL } from "$lib/constants";
+	import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 	let redeemableCode: string | null;
 
 	const loadInventory = async (): Promise<App.Item[]> => {
-		const response = await fetch(`${/*URL*/ "http://192.168.1.156:5173"}/api/inventory`);
+		const response = await fetch(`${getUrl()}/api/inventory`);
 
 		if (!response.ok) {
 			errorToast("Failed to fetch inventory");

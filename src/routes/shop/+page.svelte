@@ -4,14 +4,14 @@
 	import ErrorMessage from "$lib/components/ErrorMessage.svelte";
 
 	import { errorToast } from "$lib/toast";
-	// import { URL } from "$lib/constants";
+	import { getUrl } from "$lib/constants";
 
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
 
 	const loadProducts = async (): Promise<App.Product[]> => {
-		const response = await fetch(`${/*URL*/ "http://192.168.1.156:5173"}/api/products`);
+		const response = await fetch(`${getUrl()}/api/products`);
 
 		if (!response.ok) {
 			errorToast("Failed to fetch products");
