@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	// import { error } from "@sveltejs/kit";
+	import { getUrl } from "$lib/constants";
 
 	export let data: App.Product;
 	export let uid: string;
@@ -15,7 +15,7 @@
 	async function checkout() {
 		redirecting = true;
 
-		const res = await fetch(`${/*URL*/ "http://192.168.1.156:5173"}/api/checkout`, {
+		const res = await fetch(`${getUrl()}/api/checkout`, {
 			method: "POST",
 			body: JSON.stringify({
 				priceId: priceObject.id,

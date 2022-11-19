@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import { getUrl } from "$lib/constants";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
@@ -13,7 +14,7 @@
 	async function checkout() {
 		redirecting = true;
 
-		const res = await fetch("/api/checkout", {
+		const res = await fetch(`${getUrl()}/api/checkout`, {
 			method: "POST",
 			body: JSON.stringify({
 				priceId: priceObject.id,
