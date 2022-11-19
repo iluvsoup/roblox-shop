@@ -9,7 +9,6 @@ export const POST: RequestHandler = async ({ request }) => {
 		throw error(401, { message: "Unauthorized" });
 	}
 
-	console.log("authorized");
 	const data = await request.json();
 
 	try {
@@ -20,17 +19,12 @@ export const POST: RequestHandler = async ({ request }) => {
 		});
 
 		if (!res) {
-			console.log("no product found");
 			return json({
 				status: "INVALID"
 			});
 		}
 
-		console.log(res);
-		console.log(data);
-
 		if (res.ownerUid != data.uid) {
-			console.log("UID does not match");
 			return json({
 				status: "UNAUTHORIZED"
 			});
@@ -48,8 +42,6 @@ export const POST: RequestHandler = async ({ request }) => {
 			} catch {
 				throw error(500, { message: "Failed to delete product from inventory" });
 			}
-
-			console.log("OK");
 
 			return json({
 				status: "OK",
