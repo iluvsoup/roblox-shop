@@ -5,8 +5,10 @@
 <template>
 	<div class="wrapper">
 		<img src="https://http.cat/{$page.status}" alt="cat" />
-		<h1>{$page.error?.message}</h1>
-		<a href="/">Return to homepage</a>
+		<div class="text">
+			<h1>{$page.error?.message}</h1>
+			<a href="/">Return to homepage</a>
+		</div>
 	</div>
 </template>
 
@@ -21,6 +23,10 @@
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	.text {
+		transform: translateY(-25%);
 	}
 
 	h1,
