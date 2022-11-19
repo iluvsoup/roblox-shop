@@ -87,7 +87,6 @@
 		margin-top: 0;
 		text-align: center;
 		font-size: 24px;
-		font-weight: 400;
 	}
 
 	.image {

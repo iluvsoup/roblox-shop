@@ -52,13 +52,15 @@
 				{#each data as product}
 					<div class="product">
 						<img class="image" alt="product" src={product.data.images[0]} />
-						<p class="name">{product.data.name}</p>
-						<button
-							class="redeem"
-							on:click={() => {
-								redeemableCode = product.code;
-							}}>REDEEM</button
-						>
+						<div class="content">
+							<p class="name">{product.data.name}</p>
+							<button
+								class="redeem"
+								on:click={() => {
+									redeemableCode = product.code;
+								}}>REDEEM</button
+							>
+						</div>
 					</div>
 				{/each}
 			</div>
@@ -142,18 +144,41 @@
 
 	.product {
 		margin-top: 3rem;
-		width: 15rem;
-		background-color: #eee;
-		height: 15rem;
-		/* cursor: pointer; */
-	}
-
-	.image {
 		width: 100%;
-		height: 50%;
+		max-width: 18rem;
+		background-color: var(--primary-light);
+		color: #fff;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		transition: transform, box-shadow;
+		transition-duration: 0.5s;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
-	.name {
+	.product:hover,
+	.product:hover {
+		transform: scale(105%);
+		z-index: 2;
+		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+	}
+
+	.product .content {
+		padding-top: 1rem;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		padding-bottom: 1.5rem;
+	}
+
+	.product p {
+		margin-top: 0;
+	}
+
+	.product .image {
+		width: 100%;
+	}
+
+	.product .name {
+		font-size: 24px;
 		text-align: center;
 	}
 
@@ -162,12 +187,32 @@
 		margin: 1rem 0 1rem 0;
 	}
 
-	.redeem {
-		display: block;
+	.product .redeem {
 		margin-left: auto;
 		margin-right: auto;
-		width: 10rem;
-		height: 3rem;
+		display: block;
+		background-color: var(--secondary);
+		border: 1px solid var(--secondary);
+		border-radius: 0.5rem;
+		color: #fff;
+		font-weight: 700;
+		font-size: 18px;
 		cursor: pointer;
+		transition: box-shadow, 0.5s ease;
+		font-family: Poppins;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+
+	.product .redeem:hover,
+	.product .redeem:focus {
+		outline: none;
+		/* transform: translateY(-0.125rem); */
+		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+		background-color: #fff;
+		border: 1px solid var(--secondary);
+		color: var(--secondary);
 	}
 </style>
