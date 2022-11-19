@@ -8,7 +8,7 @@
 
 	import { getUrl } from "$lib/constants";
 	import { errorToast } from "$lib/toast";
-	import { faXmark } from "@fortawesome/free-solid-svg-icons";
+	import { faCopy, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 	let redeemableCode: string | null;
 
@@ -26,6 +26,14 @@
 
 	const hide = () => {
 		redeemableCode = null;
+	};
+
+	const copy = async () => {
+		try {
+			await navigator.clipboard.writeText(redeemableCode!);
+		} catch (err) {
+			console.error("Failed copying text, is HTTPS enabled?", err);
+		}
 	};
 </script>
 
@@ -46,8 +54,15 @@
 	{:then data}
 		{#if redeemableCode}
 			<div class="overlay" transition:fade={{ duration: 250 }}>
-				<h1>{redeemableCode}</h1>
+				<div class="header">
+					<h1>{redeemableCode}</h1>
+					<div class="copy" on:click={copy} on:keydown={copy}>
+						<Fa icon={faCopy} size="2.5x" />
+					</div>
+				</div>
+
 				<p>Use this code in-game to redeem your purchased item</p>
+
 				<div class="close" on:click={hide} on:keydown={hide}>
 					<Fa icon={faXmark} size="3x" />
 				</div>
@@ -105,24 +120,43 @@
 		justify-content: center;
 	}
 
+	.overlay .header {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		gap: 1.5rem;
+	}
+
 	.overlay .close {
 		position: absolute;
 		top: 0;
 		right: 0;
-		border: none;
 		color: #fff;
 		cursor: pointer;
 		margin: 1.5rem;
 		transition: transform 1s ease;
 	}
 
+	.overlay .copy {
+		color: #fff;
+		cursor: pointer;
+		transition: transform 0.25s ease;
+	}
+
+	.overlay .copy:hover {
+		transform: scale(105%);
+	}
+
 	.overlay .close:hover {
 		transform: rotate(360deg);
 	}
 
-	.overlay > h1 {
-		padding-left: 2rem;
-		padding-right: 2rem;
+	.overlay h1 {
+		padding-top: 0;
+		padding-bottom: 0;
+		margin: 0;
 	}
 
 	.overlay > p {
