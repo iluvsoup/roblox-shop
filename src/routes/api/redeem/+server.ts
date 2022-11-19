@@ -26,6 +26,9 @@ export const POST: RequestHandler = async ({ request }) => {
 			});
 		}
 
+		console.log(res);
+		console.log(data);
+
 		if (res.ownerUid != data.uid) {
 			console.log("UID does not match");
 			return json({
