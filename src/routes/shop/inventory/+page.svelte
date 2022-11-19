@@ -1,14 +1,20 @@
 <script lang="ts">
 	import ErrorMessage from "$lib/components/ErrorMessage.svelte";
+	import Item from "./Item.svelte";
 	import Spinner from "$lib/components/Spinner.svelte";
+	import Fa from "svelte-fa";
+
+	import { fade } from "svelte/transition";
+
+	import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 	import { errorToast } from "$lib/toast";
-	import { URL } from "$lib/constants";
+	// import { URL } from "$lib/constants";
 
 	let redeemableCode: string | null;
 
 	const loadInventory = async (): Promise<App.Item[]> => {
-		const response = await fetch(`${URL}/api/inventory`);
+		const response = await fetch(`${/*URL*/ "http://192.168.1.156:5173"}/api/inventory`);
 
 		if (!response.ok) {
 			errorToast("Failed to fetch inventory");
@@ -17,6 +23,10 @@
 
 		const data = await response.json();
 		return data;
+	};
+
+	const hide = () => {
+		redeemableCode = null;
 	};
 </script>
 
@@ -35,32 +45,28 @@
 			<Spinner />
 		</div>
 	{:then data}
+		{#if redeemableCode}
+			<div class="overlay" transition:fade={{ duration: 250 }}>
+				<h1>{redeemableCode}</h1>
+				<p>Use this code in-game to redeem your purchased item</p>
+				<div class="close" on:click={hide} on:keydown={hide}>
+					<Fa icon={faXmark} size="3x" />
+				</div>
+			</div>
+		{/if}
+
 		{#if data.length === 0}
 			<h2>Nothing here yet!</h2>
-		{:else if redeemableCode}
-			<h1>{redeemableCode}</h1>
-			<p>Enter this code inside roblox to redeem your purchase, make sure NOT to share it with anybody else</p>
-
-			<button
-				class="hide"
-				on:click={() => {
-					redeemableCode = null;
-				}}>hide code</button
-			>
 		{:else}
 			<div class="products">
 				{#each data as product}
-					<div class="product">
-						<img class="image" alt="product" src={product.data.images[0]} />
-						<div class="content">
-							<p class="name">{product.data.name}</p>
-							<button
-								class="redeem"
-								on:click={() => {
-									redeemableCode = product.code;
-								}}>REDEEM</button
-							>
-						</div>
+					<div class="wrapper">
+						<Item
+							data={product}
+							on:redeem={(event) => {
+								redeemableCode = event.detail.code;
+							}}
+						/>
 					</div>
 				{/each}
 			</div>
@@ -85,6 +91,47 @@
 		color: #888;
 		text-align: center;
 		font-weight: 400;
+	}
+
+	.overlay {
+		background: rgba(0, 0, 0, 0.9);
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.overlay .close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		border: none;
+		color: #fff;
+		cursor: pointer;
+		margin: 1.5rem;
+		transition: transform 1s ease;
+	}
+
+	.overlay .close:hover {
+		transform: rotate(360deg);
+	}
+
+	.overlay > h1 {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+
+	.overlay > p {
+		padding-left: 2rem;
+		padding-right: 2rem;
+		color: #fff;
+		text-align: center;
+		font-size: 24px;
 	}
 
 	.bar {
@@ -136,83 +183,15 @@
 		}
 	}
 
+	.wrapper {
+		width: 100%;
+		max-width: 18rem;
+		margin-top: 3rem;
+	}
+
 	.error {
 		margin-top: 2rem;
 		display: flex;
 		justify-content: center;
-	}
-
-	.product {
-		margin-top: 3rem;
-		width: 100%;
-		max-width: 18rem;
-		background-color: var(--primary-light);
-		color: #fff;
-		border-radius: 0.5rem;
-		overflow: hidden;
-		transition: transform, box-shadow;
-		transition-duration: 0.5s;
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-	}
-
-	.product:hover,
-	.product:hover {
-		transform: scale(105%);
-		z-index: 2;
-		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
-	}
-
-	.product .content {
-		padding-top: 1rem;
-		padding-left: 1rem;
-		padding-right: 1rem;
-		padding-bottom: 1.5rem;
-	}
-
-	.product p {
-		margin-top: 0;
-	}
-
-	.product .image {
-		width: 100%;
-	}
-
-	.product .name {
-		font-size: 24px;
-		text-align: center;
-	}
-
-	.hide {
-		display: block;
-		margin: 1rem 0 1rem 0;
-	}
-
-	.product .redeem {
-		margin-left: auto;
-		margin-right: auto;
-		display: block;
-		background-color: var(--secondary);
-		border: 1px solid var(--secondary);
-		border-radius: 0.5rem;
-		color: #fff;
-		font-weight: 700;
-		font-size: 18px;
-		cursor: pointer;
-		transition: box-shadow, 0.5s ease;
-		font-family: Poppins;
-		padding-left: 1rem;
-		padding-right: 1rem;
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
-	}
-
-	.product .redeem:hover,
-	.product .redeem:focus {
-		outline: none;
-		/* transform: translateY(-0.125rem); */
-		box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
-		background-color: #fff;
-		border: 1px solid var(--secondary);
-		color: var(--secondary);
 	}
 </style>

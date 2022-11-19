@@ -2,7 +2,7 @@ import { stripe } from "$lib/server/stripe";
 import { error } from "@sveltejs/kit";
 import { getOrCreateCustomer } from "$lib/server/get_or_create_customer";
 
-import { TOKEN_DURATION, URL } from "$lib/constants";
+import { TOKEN_DURATION } from "$lib/constants";
 import jwt from "jsonwebtoken";
 
 import type { RequestHandler } from "./$types";
@@ -26,9 +26,10 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	const priceId = data.priceId;
 	const mode = data.mode;
 
+	// const URL = process.env.NODE_ENV == "development" ? "192.168.1.156:5173" : "shop.iluvsoup.com";
 	const session = await stripe.checkout.sessions.create({
-		cancel_url: `${URL}/shop`,
-		success_url: `${URL}/shop/success/{CHECKOUT_SESSION_ID}`,
+		cancel_url: `${/*URL*/ "http://192.168.1.156:5173"}/shop`,
+		success_url: `${/*URL*/ "http://192.168.1.156:5173"}/shop/success/{CHECKOUT_SESSION_ID}`,
 		customer: await getOrCreateCustomer(data.uid),
 		mode: mode,
 		line_items: [
