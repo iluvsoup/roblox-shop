@@ -24,21 +24,26 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 
 	const data = await request.json();
 	const priceId = data.priceId;
-	const mode = data.mode;
 
-	// const URL = process.env.NODE_ENV == "development" ? "192.168.1.156:5173" : "shop.iluvsoup.com";
-	const session = await stripe.checkout.sessions.create({
-		cancel_url: `${getUrl()}/shop`,
-		success_url: `${getUrl()}/shop/success/{CHECKOUT_SESSION_ID}`,
-		customer: await getOrCreateCustomer(data.uid),
-		mode: mode,
-		line_items: [
-			{
-				price: priceId,
-				quantity: 1 // hard coded for now
-			}
-		]
-	});
+	const price = await stripe.prices.retrieve(priceId);
 
-	return new Response(session.url);
+	if (price) {
+		const session = await stripe.checkout.sessions.create({
+			customer: await getOrCreateCustomer(data.uid),
+			payment_method_types: price.currency === "brl" ? ["card", "pix"] : ["card"],
+			line_items: [
+				{
+					price: priceId,
+					quantity: 1 // hard coded for now
+				}
+			],
+			mode: "payment",
+			cancel_url: `${getUrl()}/shop`,
+			success_url: `${getUrl()}/shop/success/{CHECKOUT_SESSION_ID}`
+		});
+
+		return new Response(session.url);
+	} else {
+		throw error(400, { message: "No product associated with request" });
+	}
 };

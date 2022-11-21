@@ -20,8 +20,7 @@
 			method: "POST",
 			body: JSON.stringify({
 				priceId: priceObject.id,
-				uid: uid,
-				mode: priceObject.type == "recurring" ? "subscription" : "payment"
+				uid: uid
 			})
 		});
 
