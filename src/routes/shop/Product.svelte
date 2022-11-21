@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { getUrl } from "$lib/constants";
+	import { errorToast } from "$lib/toast";
 
 	export let data: App.Product;
 	export let uid: string;
@@ -27,6 +28,9 @@
 		if (res.ok) {
 			const url = await res.text();
 			goto(url);
+		} else {
+			redirecting = false;
+			errorToast("Failed to create checkout session, try logging out and in again");
 		}
 	}
 </script>

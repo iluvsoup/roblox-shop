@@ -7,20 +7,24 @@ export const getOrCreateCustomer = async (uid: string) => {
 		where: { uid: uid }
 	});
 
-	if (user?.stripeCustomerId) {
-		return user.stripeCustomerId;
+	if (user) {
+		if (user?.stripeCustomerId) {
+			return user.stripeCustomerId;
+		} else {
+			const customer = await stripe.customers.create({
+				metadata: {
+					uid: uid
+				}
+			});
+
+			await prisma.user.update({
+				where: { uid: uid },
+				data: { stripeCustomerId: customer.id }
+			});
+
+			return customer.id;
+		}
 	} else {
-		const customer = await stripe.customers.create({
-			metadata: {
-				uid: uid
-			}
-		});
-
-		await prisma.user.update({
-			where: { uid: uid },
-			data: { stripeCustomerId: customer.id }
-		});
-
-		return customer.id;
+		throw error(500, { message: "Could not find user, please log in again" });
 	}
 };
