@@ -22,11 +22,19 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	const eventType = event.type;
-
+	console.log(eventType);
 	switch (eventType) {
 		// DO NOT FORGET TO ADD EVENT TO STRIPE DASHBOARD IF YOU'RE ADDING A NEW EVENT HANDLER
 		// https://dashboard.stripe.com/webhooks
 
+		// pix failed
+		case "checkout.session.async_payment_failed":
+
+		// pix succeded
+		case "checkout.session.async_payment_succeeded":
+
+		// checkout session is completed
+		// in case of pix, this means that the pix code has been generated
 		case "checkout.session.completed":
 			const data = event.data;
 			const object = data.object as Stripe.Checkout.Session;
@@ -35,9 +43,7 @@ export const POST: RequestHandler = async ({ request }) => {
 				throw error(400, { message: "No customer associated with request" });
 			}
 
-			const customer = (await stripe.customers.retrieve(
-				object.customer as string
-			)) as Stripe.Customer;
+			const customer = (await stripe.customers.retrieve(object.customer as string)) as Stripe.Customer;
 
 			const uid = customer.metadata.uid;
 			const products = await stripe.checkout.sessions.listLineItems(object.id);
