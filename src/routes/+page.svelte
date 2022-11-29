@@ -36,11 +36,6 @@
 	};
 
 	let particlesInit = async (engine: Engine) => {
-		// you can use main to customize the tsParticles instance adding presets or custom shapes
-		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-		// starting from v2 you can add only the features you need reducing the bundle size
-
-		// unnecessary?
 		await loadParticles(engine);
 	};
 
@@ -63,7 +58,9 @@
 </svelte:head>
 
 <template>
-	<Particles id="tsparticles" options={particlesConfig} {particlesInit} />
+	<div class="particles">
+		<Particles id="tsparticles" options={particlesConfig} {particlesInit} />
+	</div>
 
 	<main>
 		<div class="content">
@@ -83,12 +80,13 @@
 </template>
 
 <style>
-	:global(body) {
-		background-image: linear-gradient(var(--primary), var(--primary-dark));
-		color: #fff;
+	.particles {
+		position: sticky;
 	}
 
 	main {
+		background-image: linear-gradient(var(--primary), var(--primary-dark));
+		color: #fff;
 		display: flex;
 		justify-content: center;
 		align-items: center;

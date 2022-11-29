@@ -38,8 +38,10 @@
 		--toastContainerRight: 1rem;
 	}
 
-	:global(body) {
+	main {
 		background-color: var(--primary-dark);
+		padding: 1rem;
+		min-height: 100vh;
 	}
 
 	header {
@@ -66,10 +68,6 @@
 		width: 48px;
 		height: 48px;
 		background: #333;
-	}
-
-	main {
-		padding: 1rem;
 	}
 
 	header {

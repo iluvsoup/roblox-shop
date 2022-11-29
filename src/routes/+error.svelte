@@ -3,18 +3,21 @@
 </script>
 
 <template>
-	<div class="wrapper">
-		<img src="https://http.cat/{$page.status}" alt="cat" />
-		<div class="text">
-			<h1>{$page.error?.message}</h1>
-			<a href="/">Return to homepage</a>
+	<main>
+		<div class="wrapper">
+			<img src="https://http.cat/{$page.status}" alt="cat" />
+			<div class="text">
+				<h1>{$page.error?.message}</h1>
+				<a href="/">Return to homepage</a>
+			</div>
 		</div>
-	</div>
+	</main>
 </template>
 
 <style>
-	:global(body) {
+	main {
 		background-color: #000;
+		min-height: 100vh; /* hacky */
 	}
 
 	img {
@@ -39,9 +42,5 @@
 
 	h1 {
 		margin-bottom: 0.5rem;
-	}
-
-	a {
-		margin-bottom: 2rem;
 	}
 </style>
