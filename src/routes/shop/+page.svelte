@@ -13,7 +13,6 @@
 	const loadProducts = async (): Promise<App.Product[]> => {
 		const response = await fetch(`${getUrl()}/api/products`);
 
-		console.log("A", response);
 		if (!response.ok) {
 			errorToast("Failed to fetch products");
 			throw new Error(`${response.status.toString()}: ${response.statusText}`);
