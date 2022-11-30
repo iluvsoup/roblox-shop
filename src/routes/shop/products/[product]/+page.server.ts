@@ -18,9 +18,5 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const productdata = await getProduct(product);
 
-	if (productdata.error) {
-		throw error(500, { message: productdata.error });
-	}
-
 	return { productdata: productdata as App.Product };
 };
