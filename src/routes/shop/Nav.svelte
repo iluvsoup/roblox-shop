@@ -53,8 +53,8 @@
 	</div>
 
 	<div class="logout">
-		<form method="POST" action="?/shop">
-			<button formaction="?/logout">Log out</button>
+		<form method="POST" action="/shop?/logout">
+			<button>Log out</button>
 		</form>
 	</div>
 </nav>
