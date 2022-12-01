@@ -31,8 +31,10 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 
 	if (PIX_ENABLED && price.currency === "brl") paymentMethodTypes.push("pix");
 
+	const customer = await getOrCreateCustomer(data.uid)
+	console.log(customer)
 	const session = await stripe.checkout.sessions.create({
-		customer: await getOrCreateCustomer(data.uid),
+		customer: customer,
 		payment_method_types: paymentMethodTypes,
 		line_items: [
 			{
