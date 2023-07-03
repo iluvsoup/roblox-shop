@@ -2,7 +2,8 @@
 
 A web shop that connects to roblox
 
-I've been working on this on my own for a while but I decided that I should probably open source it
+I've been working on this on my own for a while as a commision for someone else\
+The code is pretty bad looking bad, and I was pretty stupid, but it was a learning experience nonetheless.
 
 # Tech stack
 
