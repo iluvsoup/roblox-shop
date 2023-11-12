@@ -1,9 +1,8 @@
+# this is an old project I worked on. the code is gross, and the tech stack is overengineered, but I learnt a lot
+
 # Roblox Shop
 
 A web shop that connects to roblox
-
-I've been working on this on my own for a while as a commision for someone else\
-The code is pretty bad looking bad, and I was pretty stupid, but it was a learning experience nonetheless.
 
 # Tech stack
 
